@@ -1,0 +1,20 @@
+{"event":"START","ts":"2026-09-14T13:19:33.850Z","etTime":"09:19","start":null,"cutoff":"10:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":50822.64,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"REJECTED","ts":"2026-09-14T13:24:17.070Z","etTime":"09:24","direction":"BULL","plan":{"direction":"BULL","entry":28930.75,"stop":28850.75,"tp1":29104,"riskPoints":80,"passesGate":false}}
+{"event":"FINAL_RECONCILE_START","ts":"2026-09-14T14:00:05.103Z","etTime":"10:00","reason":"cutoff reached"}
+{"event":"STOP","ts":"2026-09-14T14:00:05.111Z","etTime":"10:00","reason":"cutoff reached"}
+{"event":"START","ts":"2026-09-14T14:13:12.349Z","etTime":"10:13","start":null,"cutoff":"17:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":49659.96,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"ARMED","ts":"2026-09-14T14:37:07.513Z","etTime":"10:37","direction":"BULL","plan":{"direction":"BULL","entry":28936.75,"stop":28930.75,"tp1":29089,"riskPoints":6,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-14T14:37:07.582Z","etTime":"10:37","direction":"BULL","plan":{"direction":"BULL","entry":28936.75,"stop":28930.75,"tp1":29089,"riskPoints":6,"passesGate":true},"orderId":3521650959,"rearm":false}
+{"event":"REJECTED","ts":"2026-09-14T14:45:58.948Z","etTime":"10:45","direction":"BEAR","plan":{"direction":"BEAR","entry":29052,"stop":29089.25,"tp1":28816.25,"riskPoints":37.25,"passesGate":false}}
+{"event":"TRADE_CANCELLED_UNFILLED","ts":"2026-09-14T15:29:00.424Z","etTime":"11:29","direction":"BULL","trade":{"direction":"BULL","entry":28936.75,"stop":28930.75,"tp1":29089,"riskPoints":6,"passesGate":true,"ifvgKey":1789393500,"orderId":3521650959,"confirmedFilled":false,"breakevenMoved":false,"armedAt":"2026-09-14T14:37:07.582Z"}}
+{"event":"ARMED","ts":"2026-09-14T16:58:04.842Z","etTime":"12:58","direction":"BULL","plan":{"direction":"BULL","entry":29207.5,"stop":29188,"tp1":29277.25,"riskPoints":19.5,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-14T16:58:05.086Z","etTime":"12:58","direction":"BULL","plan":{"direction":"BULL","entry":29207.5,"stop":29188,"tp1":29277.25,"riskPoints":19.5,"passesGate":true},"orderId":3522678200,"rearm":false}
+{"event":"TRADE_CANCELLED_UNFILLED","ts":"2026-09-14T17:41:55.945Z","etTime":"13:41","direction":"BULL","trade":{"direction":"BULL","entry":29207.5,"stop":29188,"tp1":29277.25,"riskPoints":19.5,"passesGate":true,"ifvgKey":1789403940,"orderId":3522678200,"confirmedFilled":false,"breakevenMoved":false,"armedAt":"2026-09-14T16:58:05.086Z"}}
+{"event":"REJECTED","ts":"2026-09-14T20:32:17.859Z","etTime":"16:32","direction":"BEAR","plan":{"direction":"BEAR","entry":29209.5,"stop":29277.5,"tp1":28816.25,"riskPoints":68,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-14T20:56:17.688Z","etTime":"16:56","direction":"BULL","plan":{"direction":"BULL","entry":29218,"stop":29146.75,"tp1":29303,"riskPoints":71.25,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-14T20:58:09.329Z","etTime":"16:58","direction":"BULL","plan":{"direction":"BULL","entry":29218,"stop":29146.75,"tp1":29303,"riskPoints":71.25,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-14T20:58:51.614Z","etTime":"16:58","direction":"BULL","plan":{"direction":"BULL","entry":29218,"stop":29146.75,"tp1":29303,"riskPoints":71.25,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-14T20:59:22.828Z","etTime":"16:59","direction":"BULL","plan":{"direction":"BULL","entry":29218,"stop":29146.75,"tp1":29303,"riskPoints":71.25,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-14T20:59:58.854Z","etTime":"16:59","direction":"BULL","plan":{"direction":"BULL","entry":29218,"stop":29146.75,"tp1":29303,"riskPoints":71.25,"passesGate":false}}
+{"event":"FINAL_RECONCILE_START","ts":"2026-09-14T21:02:27.116Z","etTime":"17:02","reason":"cutoff reached"}
+{"event":"STOP","ts":"2026-09-14T21:02:27.119Z","etTime":"17:02","reason":"cutoff reached"}

@@ -1,0 +1,99 @@
+[
+  {
+    "id": "chrome:BULL:1788295320:1788293760",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-09-01T22:01:47.255Z",
+    "first_armed_at_epoch": 1788300107,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29132,
+      "stop": 29125.25,
+      "tp1": 29286.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 9/1, 4:16 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 22.93,
+      "rr2": null,
+      "riskPoints": 6.75,
+      "breakevenAt": 29147,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788295320,
+          "timeET": "9/1, 4:42 PM",
+          "close": "29145.00"
+        },
+        "topAnchorBar": {
+          "time": 1788300000,
+          "timeET": "9/1, 6:00 PM",
+          "price": "29136.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1788295260,
+          "timeET": "9/1, 4:41 PM",
+          "price": "29130.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-09-01T22:01:47.263Z",
+    "filled_at_epoch": 1788300307,
+    "outcome": "STOP",
+    "outcome_bar_time": "9/1, 6:01 PM",
+    "mfe": 6.5,
+    "mae": 11,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BEAR:1788300060:1788300060",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-09-01T22:05:40.752Z",
+    "first_armed_at_epoch": 1788300340,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29141.5,
+      "stop": 29145.25,
+      "tp1": 29002,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 9/1, 6:01 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 37.2,
+      "rr2": null,
+      "riskPoints": 3.75,
+      "breakevenAt": 29126.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788300060,
+          "timeET": "9/1, 6:01 PM",
+          "close": "29125.75"
+        },
+        "topAnchorBar": {
+          "time": 1788300000,
+          "timeET": "9/1, 6:00 PM",
+          "price": "29149.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788300180,
+          "timeET": "9/1, 6:03 PM",
+          "price": "29123.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-09-01T22:07:43.435Z",
+    "filled_at_epoch": 1788300497,
+    "outcome": null,
+    "outcome_bar_time": null,
+    "mfe": 39.25,
+    "mae": 15.5,
+    "stage": "BE_TARGET_T1"
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "id": 3509131659,
+    "orderId": 3509131659,
+    "model": "JJ's Model",
+    "direction": "BEAR",
+    "plan": {
+      "entry": 29404.25,
+      "stop": 29407,
+      "tp1": 29359.25,
+      "riskPoints": 2.75
+    },
+    "armed_at": "2026-09-10T11:08:24.277Z",
+    "realEntry": null,
+    "filled": false,
+    "filled_at": null,
+    "outcome": "CANCELLED (never filled)",
+    "resultR": null,
+    "exitPrice": null,
+    "closed_at": "2026-09-10T12:15:31.993Z",
+    "note": "Restored 2026-09-11 — wiped from this file by the registry-overwrite bug (fixed same day) when a later same-day poller launch started with an empty in-memory registry. Cancelled by JJ in TopstepX ~08:15 ET, never filled, no P&L."
+  },
+  {
+    "id": 3511660545,
+    "orderId": 3511660545,
+    "model": "JJ's Model",
+    "direction": "BEAR",
+    "plan": {
+      "entry": 29248.25,
+      "stop": 29256.25,
+      "tp1": 29043.25,
+      "riskPoints": 8
+    },
+    "armed_at": "2026-09-10T16:00:41.899Z",
+    "realEntry": 29248.25,
+    "filled": true,
+    "filled_at": "2026-09-10T17:02:14.803Z",
+    "outcome": "STOP",
+    "resultR": -1,
+    "exitPrice": 29257,
+    "closed_at": "2026-09-10T17:02:14.806Z",
+    "note": "Restored 2026-09-11 — wiped from this file by the same registry-overwrite bug. Filled and stopped in the same second (price popped into the entry and ran straight through the stop); confirmed via broker order history same day. -8.75pt / -$178.78."
+  },
+  {
+    "id": 3512638185,
+    "orderId": 3512638185,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 29159.5,
+      "stop": 29142,
+      "tp1": 29492.5,
+      "riskPoints": 17.5
+    },
+    "armed_at": "2026-09-10T22:00:46.013Z",
+    "realEntry": 29149.5,
+    "filled": true,
+    "filled_at": "2026-09-10T22:01:17.106Z",
+    "outcome": "STOP",
+    "resultR": -1,
+    "exitPrice": 29130.5,
+    "closed_at": "2026-09-10T22:26:38.657Z"
+  }
+]

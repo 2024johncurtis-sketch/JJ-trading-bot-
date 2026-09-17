@@ -1,0 +1,51 @@
+{
+  "sessionDate": "2026-09-03",
+  "allTriggers": [
+    {
+      "dateStr": "2026-09-03",
+      "direction": "SHORT",
+      "entry": 29306.25,
+      "stop": 29354.25,
+      "target": 29210.25,
+      "risk": 48,
+      "rewardR": 2,
+      "outcome": "OPEN (unresolved in available data)",
+      "outcomeAt": null,
+      "resultR": null,
+      "mfeR": 0.17,
+      "maeR": 0.2
+    }
+  ],
+  "lastTick": {
+    "ts": "2026-09-03T13:57:59.258Z",
+    "etTime": "09:57",
+    "today": {
+      "date": "2026-09-03",
+      "upperLedge": 29243,
+      "lowerLedge": 29220.25,
+      "bias": "BEARISH",
+      "manipUp": false,
+      "manipDn": true,
+      "longTrigger": false,
+      "shortTrigger": true
+    },
+    "todayDate": "2026-09-03",
+    "trades": [
+      {
+        "dateStr": "2026-09-03",
+        "direction": "SHORT",
+        "entry": 29306.25,
+        "stop": 29354.25,
+        "target": 29210.25,
+        "risk": 48,
+        "rewardR": 2,
+        "outcome": "OPEN (unresolved in available data)",
+        "outcomeAt": null,
+        "resultR": null,
+        "mfeR": 0.17,
+        "maeR": 0.2
+      }
+    ],
+    "price": 29299.75
+  }
+}

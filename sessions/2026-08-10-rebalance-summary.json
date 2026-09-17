@@ -1,0 +1,36 @@
+{
+  "sessionDate": "2026-08-10",
+  "allTriggers": [
+    {
+      "dateStr": "2026-08-10",
+      "direction": "SHORT",
+      "entry": 29875.25,
+      "stop": 29900,
+      "target": 29825.75,
+      "risk": 24.75,
+      "rewardR": 2,
+      "outcome": "OPEN (unresolved in available data)",
+      "outcomeAt": null,
+      "resultR": null,
+      "mfeR": 0,
+      "maeR": 0
+    }
+  ],
+  "lastTick": {
+    "ts": "2026-08-10T19:59:52.734Z",
+    "etTime": "15:59",
+    "today": {
+      "date": "2026-08-10",
+      "upperLedge": null,
+      "lowerLedge": null,
+      "bias": "BEARISH",
+      "manipUp": false,
+      "manipDn": false,
+      "longTrigger": false,
+      "shortTrigger": false
+    },
+    "todayDate": "2026-08-10",
+    "trades": [],
+    "price": 29734.75
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "watchlist": ["NQ1!", "ES1!"],
+  "default_timeframe": "3",
+
+  "instrument_notes": "NQ1! (CME_MINI:NQ1!) is the only tradeable instrument. ES1! is secondary and used EXCLUSIVELY for SMT divergence confirmation (spec 1.4) — never traded directly, never a gating condition on its own.",
+
+  "models": {
+    "chrome": {
+      "sequence": "AOI (OTE zone of a large-range swing, 0.618-0.79, key level 0.705) -> 5-minute inversion confirmation (candle CLOSE through an FVG) -> 3-minute OTE entry at 0.705",
+      "fib_anchors": "Top anchor = highest wick of the swing high. Bottom anchor = BODY (not wick) of the candle with the lowest wick. Invert for longs.",
+      "hard_rule": "The 0.705 must be hit or there is no trade, even with a perfect setup otherwise.",
+      "standard_deviations": "OFF by default. Extensions (-1/-2/-2.5/-4) are pivot-only, stretch targets, ~30% hit rate at -4. Never the base plan.",
+      "continuation_vs_pivot": "Default to continuation-only (trading with external-range direction). Pivots require explicit flag.",
+      "anchor_rolling": "Once a swing point has been used as a fib anchor AND price retraced into that OTE zone once, that anchor is dead. Never redraw a tapped range.",
+      "bias_rule": "External/higher-timeframe bias governs. Never take internal-range trades against external bias. Bias does not flip until the external range's objective is fulfilled.",
+      "microconfirmation_layer": "UNAVAILABLE — TradingView plan is Essential, no sub-minute chart resolution. Treat the optional 15s/30s inversion+micro-SMT layer as permanently OFF."
+    },
+    "brians": {
+      "sequence": "Accumulation range (mark by candle BODIES) -> breakout close beyond it -> retest of the range body -> CISD + rejection candle (same timeframe, candle taps and closes back through the level) -> entry at CE (50%) of the rejection candle, on the candle after it",
+      "same_timeframe_law": "CISD, rejection, and entry all live on ONE timeframe. Mixing timeframes mid-setup is the single biggest documented failure mode. Exception: the named 'scale-down' technique (higher-TF CISD/rejection confirmed, then drop to the lower-TF wick inside it for a tighter entry) — flag separately, don't treat as the default.",
+      "gap_confluence": "A setup forming inside an untapped SAME-timeframe gap materially raises win rate (~45-55% base -> ~75% with discretion+gap -> ~80%+ everything aligned). These numbers are self-reported by the mentor, not audited — do not hardcode as ground truth.",
+      "risk_units": {
+        "standard_5m_15m": "15-point stop / 40-point target",
+        "one_minute_continuation": "10-point stop / 30-point target, requires retest inside a 1-minute gap, retest candle must NOT close through the level"
+      }
+    },
+    "model_selection": "Chrome candidate if a clean impulsive swing exists and price approaches 0.618-0.79 retrace. Brian's candidate if a defined accumulation range broke out and price is retesting the range body. A+ candidate if both fire in the same zone/direction — grade independently, mechanics never blend (Chrome keeps wick-anchored fib, Brian's keeps body-anchored CISD). NO TRADE if neither structure is clean — do not force-fit."
+  },
+
+  "bias_criteria": {
+    "bullish": [
+      "External/higher-timeframe structure is bullish (per Chrome bias rule) — no internal-range shorts permitted while this holds",
+      "Chrome: price retracing up into a 0.618-0.79 OTE zone off a down-into-up impulse leg, with a 5m inversion confirming up",
+      "Brian's: accumulation range broken UP, price retesting the range body from above and closing back above it (CISD + rejection)"
+    ],
+    "bearish": [
+      "External/higher-timeframe structure is bearish — no internal-range longs permitted while this holds",
+      "Chrome: price retracing down into a 0.618-0.79 OTE zone off an up-into-down impulse leg, with a 5m inversion confirming down",
+      "Brian's: accumulation range broken DOWN, price retesting the range body from below and closing back below it (CISD + rejection)"
+    ],
+    "neutral": [
+      "No completed AOI/inversion (Chrome) and no completed accumulation/breakout/retest/CISD (Brian's) — this is NO TRADE, not a coin flip",
+      "Price sitting inside an untapped accumulation range with no breakout yet",
+      "External bias itself is unresolved / chopping"
+    ]
+  },
+
+  "risk_rules": [
+    "No completed sequence = no trade. AOI/level touches alone are never entries (spec 5.1)",
+    "One attempt per zone — stopped out requires a brand-new confirmation before re-entry, never re-enter the same level on the same signal (spec 5.2)",
+    "No chasing — a missed fill is a missed trade, no market orders after the level is gone (spec 5.3)",
+    "Defined stop + defined target before entry, always, both structurally derived (inversion extreme, rejection extreme, DOL) — never arbitrary distances (spec 5.4)",
+    "Stale-setup expiry — if structure evolves past a marked zone (new swings, anchor already tapped), the old limit is cancelled. Setups do not carry across sessions unmarked (spec 5.5)",
+    "News blackout — flat into CPI, FOMC, NFP. No bracket-order gambling on prints. Post-news structure (15-30+ min after) is valid; the print itself is not (spec 5.6)",
+    "Session awareness — NY AM is the highest-quality window. Late-day (post-15:30) fresh entries get a confidence penalty; avoid holding fresh entries into the close (spec 5.7)",
+    "Counter-bias prohibition — no internal-range trades against external bias, applies globally (spec 5.8)",
+    "Quality over frequency — target 0-3 trades/day. A no-setup day is a WIN condition for discipline, not a failure. Do not water down into B/C setups because A+ didn't show (spec 5.9)",
+    "Account discipline — one account, traded slow, respect EOD trailing drawdown. Position size = fixed R derived from stop distance, never from a P&L target (spec 5.10)",
+    "SUPERSEDED 2026-08-27 (was: Partial-profit template — TP1 at the internal-range DOL, runner to the external target, stop to breakeven only after TP1 fills — spec 5.11, and JJ had explicitly confirmed liking this style on 2026-08-25). Full exit at TP1 now, always, regardless of whether a TP2 level exists. JJ's own call after backtesting both on the 26-day fixture: partial+runner scored +65.15R, full-exit scored +82.73R — TP2 was hit ZERO times in the entire dataset under either style, so holding a runner past TP1 has only ever given back R here, never earned any. Revisit if TP2 starts actually hitting in live data.",
+    "Risk units: 15-point stop / 40-point target for standard Brian's setups (5m/15m); 10-point stop / 30-point target for the 1-minute continuation variant"
+  ],
+
+  "grading": "A+ = both models independently complete their sequence in the same zone/direction. A/B/C boundary below A+ is NOT precisely defined by the spec (known ambiguity, spec 8) — do not silently invent thresholds, surface grading uncertainty when reporting a setup below A+.",
+
+  "hard_constraints": {
+    "max_stop_points": 20,
+    "min_stop_points": 2,
+    "manual_breakeven_points": 15,
+    "max_daily_profit_consistency": 1550,
+    "max_daily_loss": 1800,
+    "daily_caps_enforcement": "Added 2026-08-31 per JJ, matching TopstepX's own displayed PDPT/PDLL figures for the 50K Trading Combine account (id 27156343 — the ONLY account this integration touches; JJ explicitly excluded the Express account, id 26338547, $9.52 balance, from all trading/scripts). topstep-live-poller.mjs checks live account balance vs. session-start balance each tick; once cumulative session P&L is >= max_daily_profit_consistency or <= -max_daily_loss, it stops considering NEW entries for the rest of the session (existing open positions/orders are NOT auto-closed, same convention as the cutoff-time behavior). This is a redundant safety net on top of whatever TopstepX enforces platform-side, not a replacement for it.",
+    "enforcement": "JJ never runs more than a 20-point stop on NQ. Any computed plan (Chrome or Brian's) whose stop distance exceeds this is REJECTED outright — reason 'stop exceeds max risk' — and must never be presented as a tradeable plan. Log it as a rejected candidate, not a silently-adjusted one. This is a sanity gate independent of the crosscheck gate: a structurally self-consistent plan can still be invalid for JJ if it's oversized. Per JJ (2026-07-17): if a computed Chrome stop is 100+ points, the inversion reference used to derive it is wrong by definition, since Chrome stops come from the confirming inversion's extreme, which should be tight — an oversized stop is itself evidence of a bad anchor, not just an inconvenient number.",
+    "min_enforcement": "Added 2026-07-26 after a live overnight session produced 1.25-4.25pt 'stops' (and one BACKWARDS stop, above entry on a BULL) once PROPOSALS #7's tightest-stop IFVG selection started actively hunting for the smallest available risk with no floor on structural significance. min_stop_points=2 is a conservative, evidence-based default (JJ's own regression baseline already has a legitimate 5.25pt gate-passing trade, so this sits safely below it) meant only to exclude tick-noise-level gaps that were never real inversions — flagged as a heuristic needing JJ's own confirmation/adjustment, not a spec-given constant.",
+    "manual_breakeven_enforcement": "Added 2026-08-12 per JJ: regardless of the model's own TP1-triggered breakeven rule (spec 5.11), JJ personally moves his stop to breakeven once price has moved manual_breakeven_points in his favor, even if that happens well before TP1. This is a SEPARATE, EARLIER trigger, not a replacement — whichever happens first (15pt favorable move, or TP1 fill) moves the stop to breakeven; TP1/TP2 targets are unchanged either way. Modeled in backtest/engine.mjs's scorePlan, shadow-poller.mjs's updateTrackedCandidate, and backtest/rebalance-engine.mjs's scoreTrade. Confirmed materially significant on 2026-08-12: all 7 of that day's live Chrome-model STOP-outs had already moved 15pt+ favorable (range 20.25-63.5pt against 2.75-10.75pt stops) before reversing — under raw pre-fix tracking that logged as -7R, but under this rule none of the 7 should have been a full loss."
+  },
+
+  "notes": "UPDATED 2026-09-04: shadow-poller.mjs/rebalance-poller.mjs remain sim/paper only (alert-only, no execution). topstep-live-poller.mjs is real-money-capable (TopstepX/ProjectX Gateway API, account id 27156343 only) and fires every ARMED signal AUTOMATICALLY, no per-trade confirm step (that existed 2026-08-31 through 2026-09-04, removed at JJ's request) — see topstep-live-poller.mjs's header for the precondition this depends on (JJ physically at the machine when it's running) and hard_constraints.daily_caps_enforcement for the profit/loss halts. TradingView plan is Essential (no sub-second/sub-minute charts). Notification channel is Discord DM/webhook. ICT Killzones & Pivots [TFO] indicator cannot currently be read via the MCP (no labels/lines/boxes/tables/study-values exposed) — session windows are hardcoded constants elsewhere in the pipeline, not read live. Liquidity Zone Detector indicator is excluded entirely — its label/line price values don't correspond to NQ's actual trading range and are not trustworthy. SMT (ES1! divergence check) is not yet implemented in the read/parse pipeline — treat as a future addition, never a gating condition per spec 1.4 in the meantime."
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 3503701467,
+    "orderId": 3503701467,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 29392.75,
+      "stop": 29388.75,
+      "tp1": 29633.75,
+      "riskPoints": 4
+    },
+    "armed_at": "2026-09-09T12:03:17.822Z",
+    "realEntry": 29389.5,
+    "filled": true,
+    "filled_at": null,
+    "outcome": "STOP",
+    "resultR": -1,
+    "exitPrice": 29384.25,
+    "closed_at": "2026-09-09T12:03:17.833Z",
+    "note": "Reconstructed 2026-09-10 from real TopstepX order history (orderId 3503701467, bracket children 3503701468/3503701469) — the poller process that placed this order stopped writing to its own log after 08:47 ET with no crash trace, so this trade's fill/close was never recorded live. filled_at is unknown (the poller wasn't running to observe it); closed_at and exitPrice are the stop-loss child order's real filledPrice/updateTimestamp. $ impact confirmed independently via account balance delta between this session's start ($51,393.66) and the next poller launch's start ($51,284.88) = -$108.78, consistent with this fill."
+  }
+]

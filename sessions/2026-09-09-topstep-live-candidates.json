@@ -1,0 +1,64 @@
+[
+  {
+    "id": 3503701467,
+    "orderId": 3503701467,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 29392.75,
+      "stop": 29388.75,
+      "tp1": 29633.75,
+      "riskPoints": 4
+    },
+    "armed_at": "2026-09-09T12:03:17.427Z",
+    "realEntry": 29389.5,
+    "filled": true,
+    "filled_at": "2026-09-09T12:03:17.828Z",
+    "outcome": "STOP",
+    "resultR": -1,
+    "exitPrice": 29384.25,
+    "closed_at": "2026-09-09T12:03:35.213Z",
+    "note": "Reconstructed 2026-09-10 from real TopstepX order history (orderId 3503701467, bracket children 3503701468/3503701469). This was session A (07:00 ET start / 10:00 ET cutoff), whose process exited some time after 08:47 ET with no STOP/crash log and never wrote a candidates file at all; its raw log is the misdated sessions/2026-09-08-topstep-live.jsonl. Entry limit filled 29389.5 (3.25 better than planned), stop-loss child filled 29384.25 = -5.25pt, ~-$108.78 confirmed by the account balance delta between the two poller launches. closed_at is the take-profit child's cancellation timestamp (OCO resolved then)."
+  },
+  {
+    "id": 3504927062,
+    "orderId": 3504927062,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 29477.75,
+      "stop": 29471,
+      "tp1": 29633.75,
+      "riskPoints": 6.75
+    },
+    "armed_at": "2026-09-09T14:16:42.882Z",
+    "realEntry": 29477.75,
+    "filled": true,
+    "filled_at": "2026-09-09T14:22:26.227Z",
+    "outcome": "STOP",
+    "resultR": -1,
+    "exitPrice": 29470.5,
+    "closed_at": "2026-09-09T14:22:57.491Z"
+  },
+  {
+    "id": 3505190991,
+    "orderId": 3505190991,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 29477.75,
+      "stop": 29465.5,
+      "tp1": 29633.75,
+      "riskPoints": 12.25
+    },
+    "armed_at": "2026-09-09T14:31:53.908Z",
+    "realEntry": 29477.75,
+    "filled": true,
+    "filled_at": null,
+    "outcome": "STOP",
+    "resultR": -1,
+    "exitPrice": 29465.25,
+    "closed_at": "2026-09-09T15:06:00.527Z",
+    "note": "Reconstructed 2026-09-10 from real TopstepX order history (orderId 3505190991, bracket children 3505190992/3505190993). This trade's stop-loss actually filled at 11:06 ET — 6 minutes AFTER the poller's own 11:00 ET cutoff already stopped the process, so it was never observed live and this record originally sat at filled:false/outcome:null. filled_at is unknown (poller wasn't running); closed_at and exitPrice are the stop-loss child order's real filledPrice/updateTimestamp."
+  }
+]

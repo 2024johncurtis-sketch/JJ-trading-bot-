@@ -1,0 +1,22 @@
+{"event":"START","ts":"2026-09-17T04:30:35.302Z","etTime":"00:30","start":"2026-09-17 07:00 ET","cutoff":"10:00","accountId":27636567,"contractId":"CON.F.US.ENQ.Z26","sessionStartBalance":51559.76,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"WAITING_FOR_START","ts":"2026-09-17T04:30:35.306Z","etTime":"00:30","start":"2026-09-17 07:00 ET"}
+{"event":"START_REACHED","ts":"2026-09-17T11:38:51.884Z","etTime":"07:38"}
+{"event":"ARMED","ts":"2026-09-17T11:39:23.950Z","etTime":"07:39","direction":"BULL","plan":{"direction":"BULL","entry":29572.75,"stop":29563,"tp1":29614,"riskPoints":9.75,"passesGate":true},"orderSize":6}
+{"event":"PLACE_ORDER_FAILED","ts":"2026-09-17T11:39:24.499Z","etTime":"07:39","direction":"BULL","plan":{"direction":"BULL","entry":29572.75,"stop":29563,"tp1":29614,"riskPoints":9.75,"passesGate":true},"error":"TopStep API error on /api/Order/place: HTTP 200 Brackets cannot be used with Position Brackets. You must enable Auto OCO Brackets."}
+{"event":"REJECTED","ts":"2026-09-17T13:50:51.786Z","etTime":"09:50","direction":"BEAR","plan":{"direction":"BEAR","entry":29705.25,"stop":29728,"tp1":29342,"riskPoints":22.75,"passesGate":false}}
+{"event":"FINAL_RECONCILE_START","ts":"2026-09-17T13:50:59.031Z","etTime":"09:50","reason":"signal: SIGINT"}
+{"event":"STOP","ts":"2026-09-17T13:50:59.036Z","etTime":"09:50","reason":"signal: SIGINT"}
+{"event":"START","ts":"2026-09-17T13:51:45.185Z","etTime":"09:51","start":null,"cutoff":"10:00","accountId":27636567,"contractId":"CON.F.US.ENQ.Z26","sessionStartBalance":51559.76,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"REJECTED","ts":"2026-09-17T13:52:48.713Z","etTime":"09:52","direction":"BEAR","plan":{"direction":"BEAR","entry":29705.25,"stop":29728,"tp1":29342,"riskPoints":22.75,"passesGate":false}}
+{"event":"FINAL_RECONCILE_START","ts":"2026-09-17T13:57:33.898Z","etTime":"09:57","reason":"signal: SIGINT"}
+{"event":"STOP","ts":"2026-09-17T13:57:33.900Z","etTime":"09:57","reason":"signal: SIGINT"}
+{"event":"START","ts":"2026-09-17T13:57:36.830Z","etTime":"09:57","start":null,"cutoff":"12:00","accountId":27636567,"contractId":"CON.F.US.ENQ.Z26","sessionStartBalance":51042.2,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"REJECTED","ts":"2026-09-17T13:57:37.848Z","etTime":"09:57","direction":"BEAR","plan":{"direction":"BEAR","entry":29705.25,"stop":29728,"tp1":29349.25,"riskPoints":22.75,"passesGate":false}}
+{"event":"ARMED","ts":"2026-09-17T14:51:08.663Z","etTime":"10:51","direction":"BEAR","plan":{"direction":"BEAR","entry":29729.75,"stop":29748.75,"tp1":29368.75,"riskPoints":19,"passesGate":true},"orderSize":3}
+{"event":"ORDER_PLACED","ts":"2026-09-17T14:51:08.840Z","etTime":"10:51","direction":"BEAR","plan":{"direction":"BEAR","entry":29729.75,"stop":29748.75,"tp1":29368.75,"riskPoints":19,"passesGate":true},"orderId":3538621033,"orderSize":3,"rearm":false}
+{"event":"TRADE_FILLED","ts":"2026-09-17T15:41:07.348Z","etTime":"11:41","direction":"BEAR","trade":{"direction":"BEAR","entry":29729.75,"stop":29748.75,"tp1":29368.75,"riskPoints":19,"passesGate":true,"ifvgKey":1789651800,"orderId":3538621033,"confirmedFilled":true,"breakevenMoved":false,"armedAt":"2026-09-17T14:51:08.840Z","realEntry":29729.75}}
+{"event":"TRADE_CLOSED","ts":"2026-09-17T15:50:27.800Z","etTime":"11:50","direction":"BEAR","trade":{"direction":"BEAR","entry":29729.75,"stop":29748.75,"tp1":29368.75,"riskPoints":19,"passesGate":true,"ifvgKey":1789651800,"orderId":3538621033,"confirmedFilled":true,"breakevenMoved":false,"armedAt":"2026-09-17T14:51:08.840Z","realEntry":29729.75}}
+{"event":"ARMED","ts":"2026-09-17T15:56:42.401Z","etTime":"11:56","direction":"BULL","plan":{"direction":"BULL","entry":29690,"stop":29680.75,"tp1":29753.25,"riskPoints":9.25,"passesGate":true},"orderSize":5}
+{"event":"PLACE_ORDER_FAILED","ts":"2026-09-17T15:56:42.468Z","etTime":"11:56","direction":"BULL","plan":{"direction":"BULL","entry":29690,"stop":29680.75,"tp1":29753.25,"riskPoints":9.25,"passesGate":true},"error":"TopStep API error on /api/Order/place: HTTP 200 Account has a temporary violation."}
+{"event":"FINAL_RECONCILE_START","ts":"2026-09-17T16:00:19.652Z","etTime":"12:00","reason":"cutoff reached"}
+{"event":"STOP","ts":"2026-09-17T16:00:19.654Z","etTime":"12:00","reason":"cutoff reached"}

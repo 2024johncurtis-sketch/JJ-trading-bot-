@@ -1,0 +1,49 @@
+{"event":"START","ts":"2026-09-07T04:00:15.423Z","etTime":"00:00","cutoff":"10:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":50000,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"REJECTED","ts":"2026-09-07T04:00:16.481Z","etTime":"00:00","direction":"BEAR","plan":{"direction":"BEAR","entry":29570.25,"stop":29622,"tp1":29468,"riskPoints":51.75,"passesGate":false}}
+{"event":"ARMED","ts":"2026-09-07T04:00:16.533Z","etTime":"00:00","direction":"BULL","plan":{"direction":"BULL","entry":29585.25,"stop":29580,"tp1":29694,"riskPoints":5.25,"passesGate":true}}
+{"event":"PLACE_ORDER_FAILED","ts":"2026-09-07T04:00:16.593Z","etTime":"00:00","direction":"BULL","plan":{"direction":"BULL","entry":29585.25,"stop":29580,"tp1":29694,"riskPoints":5.25,"passesGate":true},"error":"TopStep API error on /api/Order/place: HTTP 200 Brackets cannot be used with Position Brackets. You must enable Auto OCO Brackets."}
+{"event":"REJECTED","ts":"2026-09-07T04:03:23.685Z","etTime":"00:03","direction":"BEAR","plan":{"direction":"BEAR","entry":29565.75,"stop":29599.25,"tp1":29468,"riskPoints":33.5,"passesGate":false}}
+{"event":"START","ts":"2026-09-07T04:21:24.068Z","etTime":"00:21","start":"07:00 ET (today)","cutoff":"10:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":50000,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"WAITING_FOR_START","ts":"2026-09-07T04:21:24.071Z","etTime":"00:21","start":"07:00 ET (today)"}
+{"event":"START_REACHED","ts":"2026-09-07T11:07:29.642Z","etTime":"07:07"}
+{"event":"ARMED","ts":"2026-09-07T11:07:30.862Z","etTime":"07:07","direction":"BEAR","plan":{"direction":"BEAR","entry":29613.25,"stop":29615.5,"tp1":29506.75,"riskPoints":2.25,"passesGate":true}}
+{"event":"PLACE_ORDER_FAILED","ts":"2026-09-07T11:07:31.402Z","etTime":"07:07","direction":"BEAR","plan":{"direction":"BEAR","entry":29613.25,"stop":29615.5,"tp1":29506.75,"riskPoints":2.25,"passesGate":true},"error":"TopStep API error on /api/Order/place: HTTP 200 Invalid take profit ticks (426). Ticks should be less than zero when going short."}
+{"event":"ARMED","ts":"2026-09-07T11:30:55.582Z","etTime":"07:30","direction":"BEAR","plan":{"direction":"BEAR","entry":29582.25,"stop":29594.25,"tp1":29514.5,"riskPoints":12,"passesGate":true}}
+{"event":"PLACE_ORDER_FAILED","ts":"2026-09-07T11:30:55.981Z","etTime":"07:30","direction":"BEAR","plan":{"direction":"BEAR","entry":29582.25,"stop":29594.25,"tp1":29514.5,"riskPoints":12,"passesGate":true},"error":"TopStep API error on /api/Order/place: HTTP 200 Invalid take profit ticks (271). Ticks should be less than zero when going short."}
+{"event":"START","ts":"2026-09-07T11:38:01.960Z","etTime":"07:38","start":null,"cutoff":"10:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":50000,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"ARMED","ts":"2026-09-07T11:38:03.040Z","etTime":"07:38","direction":"BEAR","plan":{"direction":"BEAR","entry":29582.25,"stop":29594.25,"tp1":29514.5,"riskPoints":12,"passesGate":true}}
+{"event":"PLACE_ORDER_FAILED","ts":"2026-09-07T11:38:03.508Z","etTime":"07:38","direction":"BEAR","plan":{"direction":"BEAR","entry":29582.25,"stop":29594.25,"tp1":29514.5,"riskPoints":12,"passesGate":true},"error":"TopStep API error on /api/Order/place: HTTP 200 Specified custom tag is already in use: custom tag should be unique per account"}
+{"event":"ARMED","ts":"2026-09-07T12:29:08.957Z","etTime":"08:29","direction":"BEAR","plan":{"direction":"BEAR","entry":29560.25,"stop":29567,"tp1":29514.5,"riskPoints":6.75,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-07T12:29:09.357Z","etTime":"08:29","direction":"BEAR","plan":{"direction":"BEAR","entry":29560.25,"stop":29567,"tp1":29514.5,"riskPoints":6.75,"passesGate":true},"orderId":3494939017,"rearm":false}
+{"event":"ARMED","ts":"2026-09-07T13:00:31.215Z","etTime":"09:00","direction":"BULL","plan":{"direction":"BULL","entry":29549.5,"stop":29540,"tp1":29683.5,"riskPoints":9.5,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-07T13:00:31.626Z","etTime":"09:00","direction":"BULL","plan":{"direction":"BULL","entry":29549.5,"stop":29540,"tp1":29683.5,"riskPoints":9.5,"passesGate":true},"orderId":3495001149,"rearm":false}
+{"event":"REJECTED","ts":"2026-09-07T13:10:24.955Z","etTime":"09:10","direction":"BULL","plan":{"direction":"BULL","entry":29561.5,"stop":29540,"tp1":29683.5,"riskPoints":21.5,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-07T13:18:12.299Z","etTime":"09:18","direction":"BULL","plan":{"direction":"BULL","entry":29570.5,"stop":29540,"tp1":29683.5,"riskPoints":30.5,"passesGate":false}}
+{"event":"ARMED","ts":"2026-09-07T13:24:25.948Z","etTime":"09:24","direction":"BULL","plan":{"direction":"BULL","entry":29579.75,"stop":29569,"tp1":29683.5,"riskPoints":10.75,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-07T13:24:26.939Z","etTime":"09:24","direction":"BULL","plan":{"direction":"BULL","entry":29579.75,"stop":29569,"tp1":29683.5,"riskPoints":10.75,"passesGate":true},"orderId":3495062552,"rearm":false}
+{"event":"ARMED","ts":"2026-09-07T13:36:22.491Z","etTime":"09:36","direction":"BULL","plan":{"direction":"BULL","entry":29594,"stop":29588.25,"tp1":29683.5,"riskPoints":5.75,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-07T13:36:22.941Z","etTime":"09:36","direction":"BULL","plan":{"direction":"BULL","entry":29594,"stop":29588.25,"tp1":29683.5,"riskPoints":5.75,"passesGate":true},"orderId":3495133614,"rearm":false}
+{"event":"STOP","ts":"2026-09-07T14:10:52.533Z","etTime":"10:10","reason":"cutoff reached"}
+{"event":"START","ts":"2026-09-08T03:48:37.191Z","etTime":"23:48","start":"07:00 ET (today)","cutoff":"10:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":49851.22,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"WAITING_FOR_START","ts":"2026-09-08T03:48:37.195Z","etTime":"23:48","start":"07:00 ET (today)"}
+{"event":"START_REACHED","ts":"2026-09-08T03:48:37.196Z","etTime":"23:48"}
+{"event":"STOP","ts":"2026-09-08T03:48:37.196Z","etTime":"23:48","reason":"cutoff reached"}
+{"event":"START","ts":"2026-09-08T03:49:10.142Z","etTime":"23:49","start":"07:00 ET (today)","cutoff":"11:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":49851.22,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"WAITING_FOR_START","ts":"2026-09-08T03:49:10.144Z","etTime":"23:49","start":"07:00 ET (today)"}
+{"event":"START_REACHED","ts":"2026-09-08T03:49:10.144Z","etTime":"23:49"}
+{"event":"STOP","ts":"2026-09-08T03:49:10.144Z","etTime":"23:49","reason":"cutoff reached"}
+{"event":"START","ts":"2026-09-08T03:51:49.214Z","etTime":"23:51","start":"2026-09-08 07:00 ET","cutoff":"11:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":49851.22,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"WAITING_FOR_START","ts":"2026-09-08T03:51:49.218Z","etTime":"23:51","start":"2026-09-08 07:00 ET"}
+{"event":"START_REACHED","ts":"2026-09-08T11:58:42.436Z","etTime":"07:58"}
+{"event":"ARMED","ts":"2026-09-08T11:58:43.899Z","etTime":"07:58","direction":"BULL","plan":{"direction":"BULL","entry":29588.5,"stop":29568.75,"tp1":29764.75,"riskPoints":19.75,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-08T11:58:44.553Z","etTime":"07:58","direction":"BULL","plan":{"direction":"BULL","entry":29588.5,"stop":29568.75,"tp1":29764.75,"riskPoints":19.75,"passesGate":true},"orderId":3498112742,"rearm":false}
+{"event":"REJECTED","ts":"2026-09-08T11:59:15.591Z","etTime":"07:59","direction":"BEAR","plan":{"direction":"BEAR","entry":29580.75,"stop":29635.5,"tp1":29477.75,"riskPoints":54.75,"passesGate":false}}
+{"event":"ARMED","ts":"2026-09-08T12:15:21.100Z","etTime":"08:15","direction":"BULL","plan":{"direction":"BULL","entry":29557,"stop":29545.75,"tp1":29764.75,"riskPoints":11.25,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-08T12:15:21.501Z","etTime":"08:15","direction":"BULL","plan":{"direction":"BULL","entry":29557,"stop":29545.75,"tp1":29764.75,"riskPoints":11.25,"passesGate":true},"orderId":3498160483,"rearm":false}
+{"event":"TRADE_FILLED","ts":"2026-09-08T12:15:52.699Z","etTime":"08:15","direction":"BULL","trade":{"direction":"BULL","entry":29557,"stop":29545.75,"tp1":29764.75,"riskPoints":11.25,"passesGate":true,"ifvgKey":1788868260,"orderId":3498160483,"confirmedFilled":true,"breakevenMoved":false,"armedAt":"2026-09-08T12:15:21.501Z"}}
+{"event":"ARMED","ts":"2026-09-08T12:48:37.946Z","etTime":"08:48","direction":"BULL","plan":{"direction":"BULL","entry":29568.75,"stop":29551,"tp1":29764.75,"riskPoints":17.75,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-08T12:48:38.641Z","etTime":"08:48","direction":"BULL","plan":{"direction":"BULL","entry":29568.75,"stop":29551,"tp1":29764.75,"riskPoints":17.75,"passesGate":true},"orderId":3498264154,"rearm":false}
+{"event":"TRADE_FILLED","ts":"2026-09-08T12:49:09.859Z","etTime":"08:49","direction":"BULL","trade":{"direction":"BULL","entry":29568.75,"stop":29551,"tp1":29764.75,"riskPoints":17.75,"passesGate":true,"ifvgKey":1788869880,"orderId":3498264154,"confirmedFilled":true,"breakevenMoved":false,"armedAt":"2026-09-08T12:48:38.641Z"}}
+{"event":"REJECTED","ts":"2026-09-08T13:06:48.506Z","etTime":"09:06","direction":"BULL","plan":{"direction":"BULL","entry":29603.25,"stop":29581.5,"tp1":29764.75,"riskPoints":21.75,"passesGate":false}}
+{"event":"REJECTED","ts":"2026-09-08T14:35:02.582Z","etTime":"10:35","direction":"BEAR","plan":{"direction":"BEAR","entry":29559,"stop":29585.25,"tp1":29424.75,"riskPoints":26.25,"passesGate":false}}
+{"event":"STOP","ts":"2026-09-08T15:18:32.519Z","etTime":"11:18","reason":"cutoff reached"}

@@ -1,0 +1,51 @@
+{
+  "sessionDate": "2026-08-13",
+  "allTriggers": [
+    {
+      "dateStr": "2026-08-14",
+      "direction": "SHORT",
+      "entry": 30155.5,
+      "stop": 30176.5,
+      "target": 30113.5,
+      "risk": 21,
+      "rewardR": 2,
+      "outcome": "TARGET",
+      "outcomeAt": 1786719780,
+      "resultR": 2,
+      "mfeR": 2.19,
+      "maeR": 0.57
+    }
+  ],
+  "lastTick": {
+    "ts": "2026-08-14T15:29:48.725Z",
+    "etTime": "11:29",
+    "today": {
+      "date": "2026-08-14",
+      "upperLedge": 30163,
+      "lowerLedge": 30152.25,
+      "bias": "BEARISH",
+      "manipUp": false,
+      "manipDn": true,
+      "longTrigger": false,
+      "shortTrigger": true
+    },
+    "todayDate": "2026-08-14",
+    "trades": [
+      {
+        "dateStr": "2026-08-14",
+        "direction": "SHORT",
+        "entry": 30155.5,
+        "stop": 30176.5,
+        "target": 30113.5,
+        "risk": 21,
+        "rewardR": 2,
+        "outcome": "TARGET",
+        "outcomeAt": 1786719780,
+        "resultR": 2,
+        "mfeR": 2.19,
+        "maeR": 0.57
+      }
+    ],
+    "price": 30072.25
+  }
+}

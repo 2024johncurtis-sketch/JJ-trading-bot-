@@ -1,0 +1,756 @@
+{
+  "label": "July 16",
+  "dateStr": "2026-07-16",
+  "startHHMM": "09:30:00",
+  "endHHMM": "11:30:00",
+  "sessionBars": [
+    {
+      "time": 1784208600,
+      "open": 29466,
+      "high": 29532,
+      "low": 29460.25,
+      "close": 29485.5,
+      "volume": 7892,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:30:00"
+      }
+    },
+    {
+      "time": 1784208780,
+      "open": 29485,
+      "high": 29501.25,
+      "low": 29399.75,
+      "close": 29417.25,
+      "volume": 6330,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:33:00"
+      }
+    },
+    {
+      "time": 1784208960,
+      "open": 29418.75,
+      "high": 29471,
+      "low": 29395.75,
+      "close": 29407.25,
+      "volume": 5192,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:36:00"
+      }
+    },
+    {
+      "time": 1784209140,
+      "open": 29407.25,
+      "high": 29434.5,
+      "low": 29346.75,
+      "close": 29350.5,
+      "volume": 6239,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:39:00"
+      }
+    },
+    {
+      "time": 1784209320,
+      "open": 29351,
+      "high": 29375,
+      "low": 29308.5,
+      "close": 29317.75,
+      "volume": 6423,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:42:00"
+      }
+    },
+    {
+      "time": 1784209500,
+      "open": 29316.5,
+      "high": 29342.75,
+      "low": 29301.75,
+      "close": 29303,
+      "volume": 5746,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:45:00"
+      }
+    },
+    {
+      "time": 1784209680,
+      "open": 29304,
+      "high": 29318,
+      "low": 29264.25,
+      "close": 29294.25,
+      "volume": 6765,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:48:00"
+      }
+    },
+    {
+      "time": 1784209860,
+      "open": 29296.25,
+      "high": 29353.75,
+      "low": 29285,
+      "close": 29311.25,
+      "volume": 5536,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:51:00"
+      }
+    },
+    {
+      "time": 1784210040,
+      "open": 29313.25,
+      "high": 29347.25,
+      "low": 29255.5,
+      "close": 29337.5,
+      "volume": 6168,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:54:00"
+      }
+    },
+    {
+      "time": 1784210220,
+      "open": 29337,
+      "high": 29363.75,
+      "low": 29296.5,
+      "close": 29347.5,
+      "volume": 3834,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "09:57:00"
+      }
+    },
+    {
+      "time": 1784210400,
+      "open": 29346.5,
+      "high": 29417.75,
+      "low": 29315.25,
+      "close": 29393.5,
+      "volume": 5957,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:00:00"
+      }
+    },
+    {
+      "time": 1784210580,
+      "open": 29394.5,
+      "high": 29430,
+      "low": 29380,
+      "close": 29424.5,
+      "volume": 3899,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:03:00"
+      }
+    },
+    {
+      "time": 1784210760,
+      "open": 29425.25,
+      "high": 29482,
+      "low": 29422.25,
+      "close": 29471.75,
+      "volume": 5148,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:06:00"
+      }
+    },
+    {
+      "time": 1784210940,
+      "open": 29473,
+      "high": 29495.75,
+      "low": 29450.75,
+      "close": 29459,
+      "volume": 4053,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:09:00"
+      }
+    },
+    {
+      "time": 1784211120,
+      "open": 29458.75,
+      "high": 29489.5,
+      "low": 29447.5,
+      "close": 29468.5,
+      "volume": 3530,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:12:00"
+      }
+    },
+    {
+      "time": 1784211300,
+      "open": 29467.5,
+      "high": 29501,
+      "low": 29461.75,
+      "close": 29470,
+      "volume": 3329,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:15:00"
+      }
+    },
+    {
+      "time": 1784211480,
+      "open": 29469.5,
+      "high": 29489.75,
+      "low": 29441.25,
+      "close": 29446.5,
+      "volume": 3667,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:18:00"
+      }
+    },
+    {
+      "time": 1784211660,
+      "open": 29446,
+      "high": 29451.5,
+      "low": 29397.75,
+      "close": 29426.75,
+      "volume": 4454,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:21:00"
+      }
+    },
+    {
+      "time": 1784211840,
+      "open": 29427.5,
+      "high": 29458,
+      "low": 29406,
+      "close": 29443.25,
+      "volume": 3514,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:24:00"
+      }
+    },
+    {
+      "time": 1784212020,
+      "open": 29444,
+      "high": 29488,
+      "low": 29432.75,
+      "close": 29482.5,
+      "volume": 3583,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:27:00"
+      }
+    },
+    {
+      "time": 1784212200,
+      "open": 29483.25,
+      "high": 29485.5,
+      "low": 29440,
+      "close": 29477.25,
+      "volume": 2561,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:30:00"
+      }
+    },
+    {
+      "time": 1784212380,
+      "open": 29476.75,
+      "high": 29483.25,
+      "low": 29457.5,
+      "close": 29480.25,
+      "volume": 2106,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:33:00"
+      }
+    },
+    {
+      "time": 1784212560,
+      "open": 29480.25,
+      "high": 29513.5,
+      "low": 29465.75,
+      "close": 29473,
+      "volume": 3063,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:36:00"
+      }
+    },
+    {
+      "time": 1784212740,
+      "open": 29473,
+      "high": 29473.25,
+      "low": 29426.5,
+      "close": 29442,
+      "volume": 2811,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:39:00"
+      }
+    },
+    {
+      "time": 1784212920,
+      "open": 29441.5,
+      "high": 29470.5,
+      "low": 29439.5,
+      "close": 29464.5,
+      "volume": 1557,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:42:00"
+      }
+    },
+    {
+      "time": 1784213100,
+      "open": 29464.5,
+      "high": 29479,
+      "low": 29447,
+      "close": 29451.25,
+      "volume": 1913,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:45:00"
+      }
+    },
+    {
+      "time": 1784213280,
+      "open": 29451.5,
+      "high": 29464.5,
+      "low": 29390,
+      "close": 29397.75,
+      "volume": 3054,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:48:00"
+      }
+    },
+    {
+      "time": 1784213460,
+      "open": 29398.5,
+      "high": 29414,
+      "low": 29383,
+      "close": 29389.25,
+      "volume": 3262,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:51:00"
+      }
+    },
+    {
+      "time": 1784213640,
+      "open": 29388.5,
+      "high": 29398,
+      "low": 29362,
+      "close": 29393.25,
+      "volume": 3634,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:54:00"
+      }
+    },
+    {
+      "time": 1784213820,
+      "open": 29394.5,
+      "high": 29437.5,
+      "low": 29389.5,
+      "close": 29433.75,
+      "volume": 3651,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "10:57:00"
+      }
+    },
+    {
+      "time": 1784214000,
+      "open": 29435.5,
+      "high": 29458.75,
+      "low": 29419.5,
+      "close": 29447.25,
+      "volume": 3442,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:00:00"
+      }
+    },
+    {
+      "time": 1784214180,
+      "open": 29447,
+      "high": 29453,
+      "low": 29385.25,
+      "close": 29401,
+      "volume": 3275,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:03:00"
+      }
+    },
+    {
+      "time": 1784214360,
+      "open": 29402.25,
+      "high": 29403.75,
+      "low": 29366,
+      "close": 29372,
+      "volume": 2512,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:06:00"
+      }
+    },
+    {
+      "time": 1784214540,
+      "open": 29371.5,
+      "high": 29401.75,
+      "low": 29367,
+      "close": 29376.5,
+      "volume": 2392,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:09:00"
+      }
+    },
+    {
+      "time": 1784214720,
+      "open": 29377,
+      "high": 29379.5,
+      "low": 29336,
+      "close": 29358.5,
+      "volume": 2805,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:12:00"
+      }
+    },
+    {
+      "time": 1784214900,
+      "open": 29359,
+      "high": 29375.5,
+      "low": 29336.75,
+      "close": 29363.75,
+      "volume": 2986,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:15:00"
+      }
+    },
+    {
+      "time": 1784215080,
+      "open": 29364,
+      "high": 29392.25,
+      "low": 29362.75,
+      "close": 29371,
+      "volume": 2992,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:18:00"
+      }
+    },
+    {
+      "time": 1784215260,
+      "open": 29373.25,
+      "high": 29382.25,
+      "low": 29348.5,
+      "close": 29370.25,
+      "volume": 2245,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:21:00"
+      }
+    },
+    {
+      "time": 1784215440,
+      "open": 29369,
+      "high": 29450.75,
+      "low": 29362,
+      "close": 29444.75,
+      "volume": 3924,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:24:00"
+      }
+    },
+    {
+      "time": 1784215620,
+      "open": 29445.25,
+      "high": 29451.5,
+      "low": 29384,
+      "close": 29406.75,
+      "volume": 3149,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:27:00"
+      }
+    },
+    {
+      "time": 1784215800,
+      "open": 29406.5,
+      "high": 29438.25,
+      "low": 29370,
+      "close": 29424,
+      "volume": 3078,
+      "et": {
+        "dateStr": "2026-07-16",
+        "timeStr": "11:30:00"
+      }
+    }
+  ],
+  "cisdEvents": {
+    "BEAR": [
+      {
+        "detectedAt": 1784208600,
+        "detectedAtLabel": "2026-07-16 09:30:00 ET",
+        "cisdBar": {
+          "time": 1784202480,
+          "label": "2026-07-16 07:48:00 ET",
+          "close": "29418.75"
+        },
+        "topAnchor": {
+          "time": 1784201220,
+          "label": "2026-07-16 07:27:00 ET",
+          "price": "29502.00"
+        },
+        "bottomAnchor": {
+          "time": 1784205900,
+          "label": "2026-07-16 08:45:00 ET",
+          "price": "29374.75"
+        },
+        "range": 127.25,
+        "ote705": 29464.5,
+        "zone618": 29453.5,
+        "zone79": 29475.25
+      },
+      {
+        "detectedAt": 1784209500,
+        "detectedAtLabel": "2026-07-16 09:45:00 ET",
+        "cisdBar": {
+          "time": 1784209320,
+          "label": "2026-07-16 09:42:00 ET",
+          "close": "29317.75"
+        },
+        "topAnchor": {
+          "time": 1784208600,
+          "label": "2026-07-16 09:30:00 ET",
+          "price": "29532.00"
+        },
+        "bottomAnchor": {
+          "time": 1784209500,
+          "label": "2026-07-16 09:45:00 ET",
+          "price": "29303.00"
+        },
+        "range": 229,
+        "ote705": 29464.5,
+        "zone618": 29444.5,
+        "zone79": 29484
+      }
+    ],
+    "BULL": [
+      {
+        "detectedAt": 1784208600,
+        "detectedAtLabel": "2026-07-16 09:30:00 ET",
+        "cisdBar": {
+          "time": 1784208060,
+          "label": "2026-07-16 09:21:00 ET",
+          "close": "29479.75"
+        },
+        "topAnchor": {
+          "time": 1784208600,
+          "label": "2026-07-16 09:30:00 ET",
+          "price": "29485.50"
+        },
+        "bottomAnchor": {
+          "time": 1784206260,
+          "label": "2026-07-16 08:51:00 ET",
+          "price": "29383.25"
+        },
+        "range": 102.25,
+        "ote705": 29413.5,
+        "zone618": 29422.25,
+        "zone79": 29404.75
+      },
+      {
+        "detectedAt": 1784210940,
+        "detectedAtLabel": "2026-07-16 10:09:00 ET",
+        "cisdBar": {
+          "time": 1784210760,
+          "label": "2026-07-16 10:06:00 ET",
+          "close": "29471.75"
+        },
+        "topAnchor": {
+          "time": 1784210940,
+          "label": "2026-07-16 10:09:00 ET",
+          "price": "29473.00"
+        },
+        "bottomAnchor": {
+          "time": 1784210040,
+          "label": "2026-07-16 09:54:00 ET",
+          "price": "29255.50"
+        },
+        "range": 217.5,
+        "ote705": 29319.75,
+        "zone618": 29338.5,
+        "zone79": 29301.25
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "direction": "BEAR",
+      "state": "EYES_ON",
+      "at": 1784208600,
+      "atLabel": "2026-07-16 09:30:00 ET",
+      "level": 29464.5,
+      "distance": 21,
+      "cisdTime": 1784202480
+    },
+    {
+      "direction": "BEAR",
+      "state": "ARMED",
+      "at": 1784208600,
+      "atLabel": "2026-07-16 09:30:00 ET",
+      "level": 29464.5,
+      "cisdTime": 1784202480,
+      "ifvg": {
+        "level": 29448.75,
+        "invalidation": 29540.25,
+        "invertedAtLabel": "2026-07-16 07:30:00 ET"
+      },
+      "plan": {
+        "direction": "BEAR",
+        "entry": 29464.5,
+        "stop": 29540.5,
+        "tp1": 29361,
+        "tp2": null,
+        "riskPoints": 76,
+        "rr1": 1.36,
+        "rr2": null,
+        "passesStopGate": false,
+        "ifvgUsed": {
+          "level": 29448.75,
+          "invalidation": 29540.25,
+          "invertedTime": 1784201400
+        }
+      },
+      "score": null
+    },
+    {
+      "direction": "BULL",
+      "state": "EYES_ON",
+      "at": 1784208780,
+      "atLabel": "2026-07-16 09:33:00 ET",
+      "level": 29413.5,
+      "distance": 3.75,
+      "cisdTime": 1784208060
+    },
+    {
+      "direction": "BULL",
+      "state": "ARMED",
+      "at": 1784208780,
+      "atLabel": "2026-07-16 09:33:00 ET",
+      "level": 29413.5,
+      "cisdTime": 1784208060,
+      "ifvg": {
+        "level": 29436.5,
+        "invalidation": 29361,
+        "invertedAtLabel": "2026-07-16 07:57:00 ET"
+      },
+      "plan": {
+        "direction": "BULL",
+        "entry": 29413.5,
+        "stop": 29360.75,
+        "tp1": 29645.25,
+        "tp2": 29797,
+        "riskPoints": 52.75,
+        "rr1": 4.39,
+        "rr2": 7.27,
+        "passesStopGate": false,
+        "ifvgUsed": {
+          "level": 29436.5,
+          "invalidation": 29361,
+          "invertedTime": 1784203020
+        }
+      },
+      "score": null
+    },
+    {
+      "direction": "BEAR",
+      "state": "EYES_ON",
+      "at": 1784210760,
+      "atLabel": "2026-07-16 10:06:00 ET",
+      "level": 29467.5,
+      "distance": 4.25,
+      "cisdTime": 1784209320
+    },
+    {
+      "direction": "BEAR",
+      "state": "ARMED",
+      "at": 1784210760,
+      "atLabel": "2026-07-16 10:06:00 ET",
+      "level": 29467.5,
+      "cisdTime": 1784209320,
+      "ifvg": {
+        "level": 29448.75,
+        "invalidation": 29540.25,
+        "invertedAtLabel": "2026-07-16 07:30:00 ET"
+      },
+      "plan": {
+        "direction": "BEAR",
+        "entry": 29467.5,
+        "stop": 29540.5,
+        "tp1": 29255.5,
+        "tp2": null,
+        "riskPoints": 73,
+        "rr1": 2.9,
+        "rr2": null,
+        "passesStopGate": false,
+        "ifvgUsed": {
+          "level": 29448.75,
+          "invalidation": 29540.25,
+          "invertedTime": 1784201400
+        }
+      },
+      "score": null
+    },
+    {
+      "direction": "BULL",
+      "state": "EYES_ON",
+      "at": 1784214720,
+      "atLabel": "2026-07-16 11:12:00 ET",
+      "level": 29321.75,
+      "distance": 36.75,
+      "cisdTime": 1784210760
+    },
+    {
+      "direction": "BULL",
+      "state": "ARMED",
+      "at": 1784214720,
+      "atLabel": "2026-07-16 11:12:00 ET",
+      "level": 29321.75,
+      "cisdTime": 1784210760,
+      "ifvg": {
+        "level": 29346.75,
+        "invalidation": 29301.75,
+        "invertedAtLabel": "2026-07-16 09:57:00 ET"
+      },
+      "plan": {
+        "direction": "BULL",
+        "entry": 29321.75,
+        "stop": 29301.5,
+        "tp1": 29555.75,
+        "tp2": 29797,
+        "riskPoints": 20.25,
+        "rr1": 11.56,
+        "rr2": 23.47,
+        "passesStopGate": false,
+        "ifvgUsed": {
+          "level": 29346.75,
+          "invalidation": 29301.75,
+          "invertedTime": 1784210220
+        }
+      },
+      "score": null
+    }
+  ]
+}

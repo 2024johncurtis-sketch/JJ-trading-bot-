@@ -1,0 +1,21 @@
+{
+  "_comment": "Permanent regression test set. Any future detection/rule change must re-run against every session here and match-or-beat the baseline before shipping. Add new sessions by appending an entry + a fixtures/*.json bar file (see README.md for how bars were captured via the drag-scroll extraction technique).",
+  "sessions": [
+    {
+      "id": "2026-07-16",
+      "label": "July 16",
+      "dateStr": "2026-07-16",
+      "startHHMM": "09:30:00",
+      "endHHMM": "11:30:00",
+      "fixture": "fixtures/nq_3m_bars_2026-07-14_to_17.json"
+    },
+    {
+      "id": "2026-07-17",
+      "label": "July 17",
+      "dateStr": "2026-07-17",
+      "startHHMM": "09:30:00",
+      "endHHMM": "11:00:00",
+      "fixture": "fixtures/nq_3m_bars_2026-07-14_to_17.json"
+    }
+  ]
+}

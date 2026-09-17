@@ -1,0 +1,362 @@
+[
+  {
+    "id": "chrome:BEAR:1785509640:1785509820",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T14:58:04.413Z",
+    "first_armed_at_epoch": 1785509884,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 28328.75,
+      "stop": 28345.75,
+      "tp1": 28079.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 10:57 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 14.65,
+      "rr2": null,
+      "riskPoints": 17,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785509640,
+          "timeET": "7/31, 10:54 AM",
+          "close": "28313.25"
+        },
+        "topAnchorBar": {
+          "time": 1785509460,
+          "timeET": "7/31, 10:51 AM",
+          "price": "28345.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1785509820,
+          "timeET": "7/31, 10:57 AM",
+          "price": "28289.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T14:58:04.432Z",
+    "filled_at_epoch": 1785509915,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 12:27 PM",
+    "mfe": 213.25,
+    "mae": 195.25
+  },
+  {
+    "id": "chrome:BEAR:1785509640:1785510000",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T15:00:38.721Z",
+    "first_armed_at_epoch": 1785510038,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 28334.25,
+      "stop": 28345.75,
+      "tp1": 28079.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 11:00 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 22.13,
+      "rr2": null,
+      "riskPoints": 11.5,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785509640,
+          "timeET": "7/31, 10:54 AM",
+          "close": "28313.25"
+        },
+        "topAnchorBar": {
+          "time": 1785509460,
+          "timeET": "7/31, 10:51 AM",
+          "price": "28345.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1785509820,
+          "timeET": "7/31, 10:57 AM",
+          "price": "28307.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T15:05:16.662Z",
+    "filled_at_epoch": 1785510347,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 12:27 PM",
+    "mfe": 218.75,
+    "mae": 189.75
+  },
+  {
+    "id": "chrome:BEAR:1785521340:1785521340",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T18:16:09.841Z",
+    "first_armed_at_epoch": 1785521769,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 28456.25,
+      "stop": 28465.25,
+      "tp1": 28079.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 2:09 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 41.83,
+      "rr2": null,
+      "riskPoints": 9,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785521340,
+          "timeET": "7/31, 2:09 PM",
+          "close": "28402.75"
+        },
+        "topAnchorBar": {
+          "time": 1785519540,
+          "timeET": "7/31, 1:39 PM",
+          "price": "28478.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1785521520,
+          "timeET": "7/31, 2:12 PM",
+          "price": "28403.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T18:50:23.079Z",
+    "filled_at_epoch": 1785523853,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 3:18 PM",
+    "mfe": 57.5,
+    "mae": 67.75
+  },
+  {
+    "id": "chrome:BULL:1785519180:1785521880",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T18:35:27.971Z",
+    "first_armed_at_epoch": 1785522927,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 28400.5,
+      "stop": 28395,
+      "tp1": 28725.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 2:18 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 59.14,
+      "rr2": null,
+      "riskPoints": 5.5,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785519180,
+          "timeET": "7/31, 1:33 PM",
+          "close": "28486.25"
+        },
+        "topAnchorBar": {
+          "time": 1785519360,
+          "timeET": "7/31, 1:36 PM",
+          "price": "28486.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1785517560,
+          "timeET": "7/31, 1:06 PM",
+          "price": "28364.75"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T19:59:52.579Z",
+    "filled_at_epoch": null,
+    "outcome": null,
+    "outcome_bar_time": null,
+    "mfe": 123.5,
+    "mae": 1.75
+  },
+  {
+    "id": "chrome:BEAR:1785521340:1785524040",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T18:56:02.657Z",
+    "first_armed_at_epoch": 1785524162,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 28456.25,
+      "stop": 28462.25,
+      "tp1": 28079.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 2:54 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 62.75,
+      "rr2": null,
+      "riskPoints": 6,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785521340,
+          "timeET": "7/31, 2:09 PM",
+          "close": "28402.75"
+        },
+        "topAnchorBar": {
+          "time": 1785519540,
+          "timeET": "7/31, 1:39 PM",
+          "price": "28478.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1785521520,
+          "timeET": "7/31, 2:12 PM",
+          "price": "28403.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T19:00:41.283Z",
+    "filled_at_epoch": 1785524472,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 3:18 PM",
+    "mfe": 57.5,
+    "mae": 67.75
+  },
+  {
+    "id": "chrome:BULL:1785523680:1785524400",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T19:00:10.419Z",
+    "first_armed_at_epoch": 1785524410,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 28426.25,
+      "stop": 28416.25,
+      "tp1": 28725.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 3:00 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 29.95,
+      "rr2": null,
+      "riskPoints": 10,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785523680,
+          "timeET": "7/31, 2:48 PM",
+          "close": "28458.00"
+        },
+        "topAnchorBar": {
+          "time": 1785523860,
+          "timeET": "7/31, 2:51 PM",
+          "price": "28458.25"
+        },
+        "bottomAnchorBar": {
+          "time": 1785522240,
+          "timeET": "7/31, 2:24 PM",
+          "price": "28413.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T19:04:18.780Z",
+    "filled_at_epoch": 1785524689,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 3:06 PM",
+    "mfe": 97.75,
+    "mae": 27.5
+  },
+  {
+    "id": "chrome:BULL:1785523680:1785525300",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T19:17:41.580Z",
+    "first_armed_at_epoch": 1785525461,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 28426.25,
+      "stop": 28416.25,
+      "tp1": 28725.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 3:15 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 29.95,
+      "rr2": null,
+      "riskPoints": 10,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785523680,
+          "timeET": "7/31, 2:48 PM",
+          "close": "28458.00"
+        },
+        "topAnchorBar": {
+          "time": 1785523860,
+          "timeET": "7/31, 2:51 PM",
+          "price": "28458.25"
+        },
+        "bottomAnchorBar": {
+          "time": 1785522240,
+          "timeET": "7/31, 2:24 PM",
+          "price": "28413.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T19:17:41.591Z",
+    "filled_at_epoch": 1785525492,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 3:57 PM",
+    "mfe": 97.75,
+    "mae": 27.5
+  },
+  {
+    "id": "chrome:BULL:1785525480:1785525300",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-07-31T19:30:33.171Z",
+    "first_armed_at_epoch": 1785526233,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 28429.5,
+      "stop": 28416.25,
+      "tp1": 28725.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 7/31, 3:15 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 22.36,
+      "rr2": null,
+      "riskPoints": 13.25,
+      "anchors": {
+        "cisdBar": {
+          "time": 1785525480,
+          "timeET": "7/31, 3:18 PM",
+          "close": "28486.75"
+        },
+        "topAnchorBar": {
+          "time": 1785525660,
+          "timeET": "7/31, 3:21 PM",
+          "price": "28487.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1785524760,
+          "timeET": "7/31, 3:06 PM",
+          "price": "28405.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-07-31T19:59:52.579Z",
+    "filled_at_epoch": null,
+    "outcome": "STOP",
+    "outcome_bar_time": "7/31, 3:57 PM",
+    "mfe": 94.5,
+    "mae": 30.75
+  }
+]

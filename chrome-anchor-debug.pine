@@ -1,0 +1,281 @@
+//@version=6
+indicator("Chrome OTE Fib (3m)", overlay=true, max_labels_count=50, max_lines_count=50, max_boxes_count=50)
+
+// 2026-07-17 timeframe fix: CISD detection, anchors, and OTE levels are
+// computed from 3-MINUTE data regardless of the chart's displayed timeframe
+// - per spec Section 2.1 Stage 3 ("draw a NEW fib on the 3-minute chart").
+// Mirrors scan-chart.mjs's detectChromeCISD() / findChromeAnchors() /
+// computeChromeFib() exactly. See EVOLUTION.md.
+//
+// 2026-07-17 (later): all-timeframe fix. The first version only worked when
+// the chart was ABOVE 3m (via request.security_lower_tf, which requires the
+// target to be strictly lower/faster than the chart). On the 1m and 3m
+// charts - where JJ actually takes entries - it printed "must be greater
+// than 3m" and did nothing. Three explicit modes now:
+//   - chart > 3m  -> request.security_lower_tf pulls all 3m bars per chart bar
+//   - chart == 3m -> use the chart's own native bars directly, no request call
+//   - chart < 3m  -> request.security pulls the current (already-closed) 3m
+//                    bar; de-duped by its own timestamp so each 3m bar is
+//                    only pushed into history once, not once per 1m bar.
+
+// 2026-07-17 recalibration (backtest-driven, see reports/2026-07-17-recalibration.md):
+//   1. Grind path — spec's own CISD language ("after a series of same-direction
+//      candles/wicks, a candle with a large body closes beyond...") describes TWO
+//      patterns; only the single big-body candle was implemented. Added a second
+//      path for the "series" itself accumulating displacement with no single big
+//      candle required. Whichever path's CISD is more recent wins; the CISD label
+//      is tagged with which one fired.
+//   2. Anchor-freshness expiry — spec sec5 rule5 "stale-setup expiry": a CISD from
+//      before today's 9:30 ET open (or >2hr stale intraday) is no longer used
+//      unless price is actively working its own 0.705 zone. Shows "EXPIRED ANCHOR"
+//      instead of drawing a stale fib.
+searchBars = input.int(300, "CISD search window (3m bars)", minval = 50, maxval = 500)
+consolidationLookback = input.int(10, "Consolidation lookback (3m bars before CISD)", minval = 3, maxval = 50)
+largeBodyMult = input.float(1.5, "Large-body multiplier", minval = 1.0, maxval = 5.0)
+grindMinRun = input.int(2, "Grind: min consecutive same-direction closes", minval = 2, maxval = 10)
+grindDisplacement = input.float(80.0, "Grind: min displacement (points)", minval = 1.0)
+anchorMaxAgeHours = input.float(2.0, "Anchor max age, intraday (hours)", minval = 0.25)
+oteProximity = input.int(40, "OTE proximity (pts) for 'actively working' exemption", minval = 1)
+dirInput = input.string("Bear", "Direction", options = ["Bear", "Bull"])
+MAX_BUFFER = 600
+
+var array<float> h3 = array.new_float(0)
+var array<float> l3 = array.new_float(0)
+var array<float> o3 = array.new_float(0)
+var array<float> c3 = array.new_float(0)
+var array<int>   t3 = array.new_int(0)
+var int lastPushedTime = na
+
+chartSec = timeframe.in_seconds(timeframe.period)
+tf3Sec = timeframe.in_seconds("3")
+modeAbove3m = chartSec > tf3Sec
+modeEqual3m = chartSec == tf3Sec
+modeBelow3m = chartSec < tf3Sec
+
+// --- Mode: chart ABOVE 3m ---
+array<float> h3arr = array.new_float(0)
+array<float> l3arr = array.new_float(0)
+array<float> o3arr = array.new_float(0)
+array<float> c3arr = array.new_float(0)
+array<int>   t3arr = array.new_int(0)
+if modeAbove3m
+    h3arr := request.security_lower_tf(syminfo.tickerid, "3", high)
+    l3arr := request.security_lower_tf(syminfo.tickerid, "3", low)
+    o3arr := request.security_lower_tf(syminfo.tickerid, "3", open)
+    c3arr := request.security_lower_tf(syminfo.tickerid, "3", close)
+    t3arr := request.security_lower_tf(syminfo.tickerid, "3", time)
+
+if modeAbove3m and array.size(h3arr) > 0
+    array.concat(h3, h3arr)
+    array.concat(l3, l3arr)
+    array.concat(o3, o3arr)
+    array.concat(c3, c3arr)
+    array.concat(t3, t3arr)
+
+// --- Mode: chart EQUAL to 3m ---
+if modeEqual3m
+    array.push(h3, high)
+    array.push(l3, low)
+    array.push(o3, open)
+    array.push(c3, close)
+    array.push(t3, time)
+
+// --- Mode: chart BELOW 3m ---
+float h3req = na
+float l3req = na
+float o3req = na
+float c3req = na
+int   t3req = na
+if modeBelow3m
+    h3req := request.security(syminfo.tickerid, "3", high, lookahead = barmerge.lookahead_off)
+    l3req := request.security(syminfo.tickerid, "3", low, lookahead = barmerge.lookahead_off)
+    o3req := request.security(syminfo.tickerid, "3", open, lookahead = barmerge.lookahead_off)
+    c3req := request.security(syminfo.tickerid, "3", close, lookahead = barmerge.lookahead_off)
+    t3req := request.security(syminfo.tickerid, "3", time, lookahead = barmerge.lookahead_off)
+
+if modeBelow3m and not na(t3req)
+    if na(lastPushedTime) or t3req != lastPushedTime
+        array.push(h3, h3req)
+        array.push(l3, l3req)
+        array.push(o3, o3req)
+        array.push(c3, c3req)
+        array.push(t3, t3req)
+        lastPushedTime := t3req
+
+while array.size(h3) > MAX_BUFFER
+    array.remove(h3, 0)
+    array.remove(l3, 0)
+    array.remove(o3, 0)
+    array.remove(c3, 0)
+    array.remove(t3, 0)
+
+var float topAnchorPrice = na
+var float bottomAnchorPrice = na
+var int topAnchorTime = na
+var int bottomAnchorTime = na
+var int cisdTime = na
+var float cisdPrice = na
+var bool foundCisd = false
+
+if barstate.islast
+    modeLabel = modeAbove3m ? "3m via lower_tf" : modeEqual3m ? "3m native" : "3m via security"
+    label.new(bar_index, high, "3m OTE (" + modeLabel + ")", style = label.style_label_down, color = color.new(color.blue, 0), textcolor = color.white, size = size.tiny)
+
+    n = array.size(h3)
+
+    if n <= consolidationLookback + 2
+        label.new(bar_index, close, "Insufficient 3m history buffered yet - wait for more bars to load", style = label.style_label_down, color = color.new(color.gray, 0), textcolor = color.white, size = size.small)
+    else
+        isBear = dirInput == "Bear"
+        searchStart = math.max(consolidationLookback, n - searchBars)
+
+        sumBody = 0.0
+        cnt = 0
+        for i = searchStart to n - 1
+            sumBody += math.abs(array.get(c3, i) - array.get(o3, i))
+            cnt += 1
+        avgBody = cnt > 0 ? sumBody / cnt : 0.0
+        threshold = avgBody * largeBodyMult
+
+        cisdIdx = -1
+        for i = n - 1 to searchStart
+            if cisdIdx == -1
+                body = math.abs(array.get(c3, i) - array.get(o3, i))
+                if body >= threshold and (i - consolidationLookback) >= 0
+                    winHigh = array.get(h3, i - 1)
+                    winLow = array.get(l3, i - 1)
+                    for j = i - 2 to i - consolidationLookback
+                        if array.get(h3, j) > winHigh
+                            winHigh := array.get(h3, j)
+                        if array.get(l3, j) < winLow
+                            winLow := array.get(l3, j)
+                    cl = array.get(c3, i)
+                    if isBear and cl < winLow
+                        cisdIdx := i
+                    if not isBear and cl > winHigh
+                        cisdIdx := i
+
+        // Grind path: walk back over the current unbroken run of same-direction
+        // closes ending at the latest bar. If it displaces >= grindDisplacement
+        // points from the pivot bar (last opposite-direction close before the
+        // run) and is >= grindMinRun bars long, the run's FIRST bar is the CISD
+        // (stable identity while the grind continues, mirrors Brian's-model
+        // CISD convention of marking the turn, not the latest bar).
+        runEnd = n - 1
+        runStart = runEnd
+        while runStart > 0 and (isBear ? array.get(c3, runStart) <= array.get(o3, runStart) : array.get(c3, runStart) >= array.get(o3, runStart))
+            runStart -= 1
+        runStart += 1
+        runLen = runEnd - runStart + 1
+        grindIdx = -1
+        if runLen >= grindMinRun and runStart > 0 and runStart >= searchStart
+            pivotHigh = array.get(h3, runStart - 1)
+            pivotLow = array.get(l3, runStart - 1)
+            extLow = array.get(l3, runStart)
+            extHigh = array.get(h3, runStart)
+            for j = runStart to runEnd
+                if array.get(l3, j) < extLow
+                    extLow := array.get(l3, j)
+                if array.get(h3, j) > extHigh
+                    extHigh := array.get(h3, j)
+            displacement = isBear ? pivotHigh - extLow : extHigh - pivotLow
+            if displacement >= grindDisplacement
+                grindIdx := runStart
+
+        // Dispatcher: whichever candidate's CISD bar is chronologically more
+        // recent wins; tag which path fired so it can be scored separately
+        // (reports/SCOREBOARD.md).
+        finalIdx = -1
+        pathTag = ""
+        if cisdIdx != -1 and grindIdx != -1
+            if array.get(t3, grindIdx) > array.get(t3, cisdIdx)
+                finalIdx := grindIdx
+                pathTag := "grind"
+            else
+                finalIdx := cisdIdx
+                pathTag := "single-candle"
+        else if cisdIdx != -1
+            finalIdx := cisdIdx
+            pathTag := "single-candle"
+        else if grindIdx != -1
+            finalIdx := grindIdx
+            pathTag := "grind"
+        cisdIdx := finalIdx
+
+        foundCisd := cisdIdx != -1 and cisdIdx < n - 1
+
+        if foundCisd
+            cisdTime := array.get(t3, cisdIdx)
+            cisdPrice := array.get(c3, cisdIdx)
+
+            if isBear
+                topP = array.get(h3, cisdIdx - 1)
+                topI = cisdIdx - 1
+                for j = cisdIdx - 2 to cisdIdx - consolidationLookback
+                    if array.get(h3, j) > topP
+                        topP := array.get(h3, j)
+                        topI := j
+                topAnchorPrice := topP
+                topAnchorTime := array.get(t3, topI)
+
+                botL = array.get(l3, cisdIdx + 1)
+                botI = cisdIdx + 1
+                for j = cisdIdx + 2 to n - 1
+                    if array.get(l3, j) < botL
+                        botL := array.get(l3, j)
+                        botI := j
+                bottomAnchorPrice := math.min(array.get(o3, botI), array.get(c3, botI))
+                bottomAnchorTime := array.get(t3, botI)
+            else
+                botP = array.get(l3, cisdIdx - 1)
+                botI2 = cisdIdx - 1
+                for j = cisdIdx - 2 to cisdIdx - consolidationLookback
+                    if array.get(l3, j) < botP
+                        botP := array.get(l3, j)
+                        botI2 := j
+                bottomAnchorPrice := botP
+                bottomAnchorTime := array.get(t3, botI2)
+
+                topH = array.get(h3, cisdIdx + 1)
+                topI2 = cisdIdx + 1
+                for j = cisdIdx + 2 to n - 1
+                    if array.get(h3, j) > topH
+                        topH := array.get(h3, j)
+                        topI2 := j
+                topAnchorPrice := math.max(array.get(o3, topI2), array.get(c3, topI2))
+                topAnchorTime := array.get(t3, topI2)
+
+            rangeVal = topAnchorPrice - bottomAnchorPrice
+            if rangeVal > 0
+                ote705 = isBear ? bottomAnchorPrice + 0.705 * rangeVal : topAnchorPrice - 0.705 * rangeVal
+                zone618 = isBear ? bottomAnchorPrice + 0.618 * rangeVal : topAnchorPrice - 0.618 * rangeVal
+                zone79 = isBear ? bottomAnchorPrice + 0.79 * rangeVal : topAnchorPrice - 0.79 * rangeVal
+                nowTime = array.get(t3, n - 1)
+
+                // Anchor freshness (spec sec5 rule5, "stale-setup expiry"). Pine
+                // `time` values are milliseconds; cisdTime/nowTime here are too.
+                cisdDay = year(cisdTime, "America/New_York") * 10000 + month(cisdTime, "America/New_York") * 100 + dayofmonth(cisdTime, "America/New_York")
+                nowDay = year(nowTime, "America/New_York") * 10000 + month(nowTime, "America/New_York") * 100 + dayofmonth(nowTime, "America/New_York")
+                cisdMinutes = hour(cisdTime, "America/New_York") * 60 + minute(cisdTime, "America/New_York")
+                nowMinutes = hour(nowTime, "America/New_York") * 60 + minute(nowTime, "America/New_York")
+                crossedSessionOpen = cisdDay < nowDay or (cisdDay == nowDay and cisdMinutes < 570 and nowMinutes >= 570)
+                ageHours = (nowTime - cisdTime) / 1000.0 / 3600.0
+                stale = crossedSessionOpen or ageHours > anchorMaxAgeHours
+                activelyWorking = math.abs(close - ote705) <= oteProximity
+                expired = stale and not activelyWorking
+
+                if expired
+                    label.new(bar_index, close, "EXPIRED ANCHOR (" + pathTag + ")\nCISD " + str.tostring(cisdPrice, format.mintick) + " @ stale/pre-session, price not within " + str.tostring(oteProximity) + "pt of 0.705 (" + str.tostring(ote705, format.mintick) + ")\nnot used - spec sec5 rule5", style = label.style_label_down, color = color.new(color.gray, 0), textcolor = color.white, size = size.small)
+                else
+                    label.new(cisdTime, cisdPrice, "CISD (" + pathTag + ")\n" + str.tostring(cisdPrice, format.mintick), xloc = xloc.bar_time, style = label.style_circle, color = color.new(color.yellow, 0), textcolor = color.black, size = size.tiny)
+                    label.new(topAnchorTime, topAnchorPrice, "TOP ANCHOR (wick)\n" + str.tostring(topAnchorPrice, format.mintick), xloc = xloc.bar_time, style = label.style_label_down, color = color.new(color.red, 0), textcolor = color.white, size = size.small)
+                    label.new(bottomAnchorTime, bottomAnchorPrice, "BOTTOM ANCHOR (body)\n" + str.tostring(bottomAnchorPrice, format.mintick), xloc = xloc.bar_time, style = label.style_label_up, color = color.new(color.lime, 0), textcolor = color.black, size = size.small)
+
+                    line.new(topAnchorTime, ote705, nowTime, ote705, xloc = xloc.bar_time, color = color.orange, width = 2, style = line.style_dashed)
+                    label.new(nowTime, ote705, "0.705: " + str.tostring(ote705, format.mintick), xloc = xloc.bar_time, style = label.style_label_left, color = color.orange, textcolor = color.white, size = size.small)
+
+                    box.new(topAnchorTime, zone79, nowTime, zone618, xloc = xloc.bar_time, border_color = color.orange, bgcolor = color.new(color.orange, 85))
+            else
+                label.new(bar_index, close, "Degenerate swing (range <= 0)", style = label.style_label_down, color = color.new(color.gray, 0), textcolor = color.white, size = size.small)
+        else
+            label.new(bar_index, close, "No Chrome-CISD found in " + str.tostring(searchBars) + "-bar 3m window", style = label.style_label_down, color = color.new(color.gray, 0), textcolor = color.white, size = size.small)

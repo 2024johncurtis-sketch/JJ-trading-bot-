@@ -1,0 +1,888 @@
+[
+  {
+    "id": "chrome:BEAR:1788176040:1788175920",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:01:27.746Z",
+    "first_armed_at_epoch": 1788177687,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29458.25,
+      "stop": 29464.25,
+      "tp1": 29425.25,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:32 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 5.5,
+      "rr2": null,
+      "riskPoints": 6,
+      "breakevenAt": 29443.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788176040,
+          "timeET": "8/31, 7:34 AM",
+          "close": "29438.00"
+        },
+        "topAnchorBar": {
+          "time": 1788175740,
+          "timeET": "8/31, 7:29 AM",
+          "price": "29471.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788177120,
+          "timeET": "8/31, 7:52 AM",
+          "price": "29428.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:08:15.734Z",
+    "filled_at_epoch": 1788178129,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 8:08 AM",
+    "mfe": 23.25,
+    "mae": 0.75,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BULL:1788175560:1788177060",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:01:27.746Z",
+    "first_armed_at_epoch": 1788177687,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29445.25,
+      "stop": 29426.25,
+      "tp1": 29535,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:51 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 4.72,
+      "rr2": null,
+      "riskPoints": 19,
+      "breakevenAt": 29460.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788175560,
+          "timeET": "8/31, 7:26 AM",
+          "close": "29462.25"
+        },
+        "topAnchorBar": {
+          "time": 1788175740,
+          "timeET": "8/31, 7:29 AM",
+          "price": "29465.25"
+        },
+        "bottomAnchorBar": {
+          "time": 1788174960,
+          "timeET": "8/31, 7:16 AM",
+          "price": "29437.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:01:27.759Z",
+    "filled_at_epoch": 1788177721,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 8:09 AM",
+    "mfe": 19.25,
+    "mae": 10.25,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BULL:1788177780:1788177060",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:05:25.733Z",
+    "first_armed_at_epoch": 1788177925,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29433.25,
+      "stop": 29426.25,
+      "tp1": 29535,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:51 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 14.54,
+      "rr2": null,
+      "riskPoints": 7,
+      "breakevenAt": 29448.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788177780,
+          "timeET": "8/31, 8:03 AM",
+          "close": "29448.00"
+        },
+        "topAnchorBar": {
+          "time": 1788177840,
+          "timeET": "8/31, 8:04 AM",
+          "price": "29447.75"
+        },
+        "bottomAnchorBar": {
+          "time": 1788177360,
+          "timeET": "8/31, 7:56 AM",
+          "price": "29427.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:09:23.756Z",
+    "filled_at_epoch": 1788178197,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 8:09 AM",
+    "mfe": 31.25,
+    "mae": 12.5,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BULL:1788177900:1788177780",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:07:07.708Z",
+    "first_armed_at_epoch": 1788178027,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29434.5,
+      "stop": 29432.5,
+      "tp1": 29535,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 8:03 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 50.25,
+      "rr2": null,
+      "riskPoints": 2,
+      "breakevenAt": 29449.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788177900,
+          "timeET": "8/31, 8:05 AM",
+          "close": "29450.75"
+        },
+        "topAnchorBar": {
+          "time": 1788177960,
+          "timeET": "8/31, 8:06 AM",
+          "price": "29451.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1788177360,
+          "timeET": "8/31, 7:56 AM",
+          "price": "29427.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:09:23.757Z",
+    "filled_at_epoch": 1788178197,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 8:09 AM",
+    "mfe": 30,
+    "mae": 22.25,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BEAR:1788176040:1788175800",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:08:49.768Z",
+    "first_armed_at_epoch": 1788178129,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29458.25,
+      "stop": 29471.25,
+      "tp1": 29425.25,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:30 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 2.54,
+      "rr2": null,
+      "riskPoints": 13,
+      "breakevenAt": 29443.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788176040,
+          "timeET": "8/31, 7:34 AM",
+          "close": "29438.00"
+        },
+        "topAnchorBar": {
+          "time": 1788175740,
+          "timeET": "8/31, 7:29 AM",
+          "price": "29471.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788177120,
+          "timeET": "8/31, 7:52 AM",
+          "price": "29428.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:08:49.772Z",
+    "filled_at_epoch": 1788178163,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 8:16 AM",
+    "mfe": 59.75,
+    "mae": 11.75,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BULL:1788178080:1788177780",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:10:31.756Z",
+    "first_armed_at_epoch": 1788178231,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29438.5,
+      "stop": 29432.5,
+      "tp1": 29535,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 8:03 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 16.08,
+      "rr2": null,
+      "riskPoints": 6,
+      "breakevenAt": 29453.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788178080,
+          "timeET": "8/31, 8:08 AM",
+          "close": "29464.00"
+        },
+        "topAnchorBar": {
+          "time": 1788178140,
+          "timeET": "8/31, 8:09 AM",
+          "price": "29464.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788177480,
+          "timeET": "8/31, 7:58 AM",
+          "price": "29427.75"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:10:31.759Z",
+    "filled_at_epoch": 1788178265,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 8:25 AM",
+    "mfe": 47.5,
+    "mae": 2.75,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BEAR:1788176040:1788178140",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:17:19.773Z",
+    "first_armed_at_epoch": 1788178639,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29464.25,
+      "stop": 29466.25,
+      "tp1": 29398.5,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 8:09 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 32.88,
+      "rr2": null,
+      "riskPoints": 2,
+      "breakevenAt": 29449.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788176040,
+          "timeET": "8/31, 7:34 AM",
+          "close": "29438.00"
+        },
+        "topAnchorBar": {
+          "time": 1788175740,
+          "timeET": "8/31, 7:29 AM",
+          "price": "29471.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788178140,
+          "timeET": "8/31, 8:09 AM",
+          "price": "29447.75"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:18:27.762Z",
+    "filled_at_epoch": 1788178741,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/31, 8:20 AM",
+    "mfe": 3.25,
+    "mae": 9,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BEAR:1788176040:1788174000",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:20:43.707Z",
+    "first_armed_at_epoch": 1788178843,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29464.25,
+      "stop": 29471.75,
+      "tp1": 29398.5,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:00 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 8.77,
+      "rr2": null,
+      "riskPoints": 7.5,
+      "breakevenAt": 29449.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788176040,
+          "timeET": "8/31, 7:34 AM",
+          "close": "29438.00"
+        },
+        "topAnchorBar": {
+          "time": 1788175740,
+          "timeET": "8/31, 7:29 AM",
+          "price": "29471.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788178140,
+          "timeET": "8/31, 8:09 AM",
+          "price": "29447.75"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:20:43.710Z",
+    "filled_at_epoch": 1788178877,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/31, 8:20 AM",
+    "mfe": 0,
+    "mae": 0,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BEAR:1788176040:1788178860",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:22:25.687Z",
+    "first_armed_at_epoch": 1788178945,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29464.25,
+      "stop": 29473.5,
+      "tp1": 29398.5,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 8:21 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 7.11,
+      "rr2": null,
+      "riskPoints": 9.25,
+      "breakevenAt": 29449.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788176040,
+          "timeET": "8/31, 7:34 AM",
+          "close": "29438.00"
+        },
+        "topAnchorBar": {
+          "time": 1788175740,
+          "timeET": "8/31, 7:29 AM",
+          "price": "29471.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788178140,
+          "timeET": "8/31, 8:09 AM",
+          "price": "29447.75"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:30:28.577Z",
+    "filled_at_epoch": 1788183062,
+    "outcome": "TP1",
+    "outcome_bar_time": "8/31, 8:25 AM",
+    "mfe": 86.75,
+    "mae": 11.75,
+    "tp1_hit_at": "8/31, 8:25 AM",
+    "stage": "BE_TARGET_T1",
+    "resultR": 7.11
+  },
+  {
+    "id": "chrome:BEAR:1788178980:1788169200",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:25:15.655Z",
+    "first_armed_at_epoch": 1788179115,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29472.25,
+      "stop": 29490.25,
+      "tp1": 29398.5,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 5:40 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 4.1,
+      "rr2": null,
+      "riskPoints": 18,
+      "breakevenAt": 29457.25,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788178980,
+          "timeET": "8/31, 8:23 AM",
+          "close": "29442.00"
+        },
+        "topAnchorBar": {
+          "time": 1788178800,
+          "timeET": "8/31, 8:20 AM",
+          "price": "29486.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788179040,
+          "timeET": "8/31, 8:24 AM",
+          "price": "29439.75"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:31:02.600Z",
+    "filled_at_epoch": 1788183094,
+    "outcome": "TP1",
+    "outcome_bar_time": "8/31, 8:40 AM",
+    "mfe": 94.75,
+    "mae": 8,
+    "tp1_hit_at": "8/31, 8:40 AM",
+    "stage": "BE_TARGET_T1",
+    "resultR": 4.1
+  },
+  {
+    "id": "chrome:BULL:1788177960:1788177780",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:26:55.777Z",
+    "first_armed_at_epoch": 1788179215,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29437.75,
+      "stop": 29433.75,
+      "tp1": 29546.25,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 8:03 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 27.13,
+      "rr2": null,
+      "riskPoints": 4,
+      "breakevenAt": 29452.75,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788177960,
+          "timeET": "8/31, 8:06 AM",
+          "close": "29464.00"
+        },
+        "topAnchorBar": {
+          "time": 1788178680,
+          "timeET": "8/31, 8:18 AM",
+          "price": "29467.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1788177060,
+          "timeET": "8/31, 7:51 AM",
+          "price": "29425.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T12:26:55.780Z",
+    "filled_at_epoch": 1788179248,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/31, 8:24 AM",
+    "mfe": 0,
+    "mae": 0,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BEAR:1788179100:1788175800",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T12:34:19.738Z",
+    "first_armed_at_epoch": 1788179659,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29461,
+      "stop": 29471.25,
+      "tp1": 29397,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:30 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 6.24,
+      "rr2": null,
+      "riskPoints": 10.25,
+      "breakevenAt": 29446,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788179100,
+          "timeET": "8/31, 8:25 AM",
+          "close": "29401.50"
+        },
+        "topAnchorBar": {
+          "time": 1788178800,
+          "timeET": "8/31, 8:20 AM",
+          "price": "29486.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788179160,
+          "timeET": "8/31, 8:26 AM",
+          "price": "29401.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:30:28.578Z",
+    "filled_at_epoch": 1788183062,
+    "outcome": "TP1",
+    "outcome_bar_time": "8/31, 8:40 AM",
+    "mfe": 83.5,
+    "mae": 18.75,
+    "tp1_hit_at": "8/31, 8:40 AM",
+    "stage": "BE_TARGET_T1",
+    "resultR": 6.24
+  },
+  {
+    "id": "chrome:BULL:1788181980:1788181920",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T13:15:10.718Z",
+    "first_armed_at_epoch": 1788182110,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29391.5,
+      "stop": 29381,
+      "tp1": 29511,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 9:12 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 11.38,
+      "rr2": null,
+      "riskPoints": 10.5,
+      "breakevenAt": 29406.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788181980,
+          "timeET": "8/31, 9:13 AM",
+          "close": "29405.75"
+        },
+        "topAnchorBar": {
+          "time": 1788182040,
+          "timeET": "8/31, 9:14 AM",
+          "price": "29408.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1788181620,
+          "timeET": "8/31, 9:07 AM",
+          "price": "29384.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:39:35.675Z",
+    "filled_at_epoch": 1788183609,
+    "outcome": "TP1",
+    "outcome_bar_time": "8/31, 9:31 AM",
+    "mfe": 125.25,
+    "mae": 1.25,
+    "tp1_hit_at": "8/31, 9:31 AM",
+    "stage": "BE_TARGET_T1",
+    "resultR": 11.38
+  },
+  {
+    "id": "chrome:BULL:1788182880:1788182880",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T13:30:28.574Z",
+    "first_armed_at_epoch": 1788183028,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29419,
+      "stop": 29403.5,
+      "tp1": 29509.25,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 9:28 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 5.82,
+      "rr2": null,
+      "riskPoints": 15.5,
+      "breakevenAt": 29434,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788182880,
+          "timeET": "8/31, 9:28 AM",
+          "close": "29436.50"
+        },
+        "topAnchorBar": {
+          "time": 1788182940,
+          "timeET": "8/31, 9:29 AM",
+          "price": "29438.50"
+        },
+        "bottomAnchorBar": {
+          "time": 1788182760,
+          "timeET": "8/31, 9:26 AM",
+          "price": "29411.00"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:30:28.578Z",
+    "filled_at_epoch": 1788183062,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 9:36 AM",
+    "mfe": 59.5,
+    "mae": 0.75,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  },
+  {
+    "id": "chrome:BEAR:1788179940:1788175800",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Bearish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T13:33:07.220Z",
+    "first_armed_at_epoch": 1788183187,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29457.5,
+      "stop": 29471.25,
+      "tp1": 29273.5,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 7:30 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 13.38,
+      "rr2": null,
+      "riskPoints": 13.75,
+      "breakevenAt": 29442.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788179940,
+          "timeET": "8/31, 8:39 AM",
+          "close": "29396.25"
+        },
+        "topAnchorBar": {
+          "time": 1788178680,
+          "timeET": "8/31, 8:18 AM",
+          "price": "29486.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788181200,
+          "timeET": "8/31, 9:00 AM",
+          "price": "29389.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:33:07.225Z",
+    "filled_at_epoch": 1788183218,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/31, 9:33 AM",
+    "mfe": 0,
+    "mae": 0,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BULL:1788183000:1788183000",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T13:36:12.595Z",
+    "first_armed_at_epoch": 1788183372,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29404,
+      "stop": 29396.75,
+      "tp1": 29535,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 9:30 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 18.07,
+      "rr2": null,
+      "riskPoints": 7.25,
+      "breakevenAt": 29419,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788183000,
+          "timeET": "8/31, 9:30 AM",
+          "close": "29467.75"
+        },
+        "topAnchorBar": {
+          "time": 1788183180,
+          "timeET": "8/31, 9:33 AM",
+          "price": "29467.75"
+        },
+        "bottomAnchorBar": {
+          "time": 1788181200,
+          "timeET": "8/31, 9:00 AM",
+          "price": "29377.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:36:12.599Z",
+    "filled_at_epoch": 1788183403,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/31, 9:36 AM",
+    "mfe": 0,
+    "mae": 0,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BULL:1788183000:1788182100",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T13:36:43.480Z",
+    "first_armed_at_epoch": 1788183403,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29404,
+      "stop": 29393,
+      "tp1": 29535,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 9:15 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 11.91,
+      "rr2": null,
+      "riskPoints": 11,
+      "breakevenAt": 29419,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788183000,
+          "timeET": "8/31, 9:30 AM",
+          "close": "29467.75"
+        },
+        "topAnchorBar": {
+          "time": 1788183180,
+          "timeET": "8/31, 9:33 AM",
+          "price": "29467.75"
+        },
+        "bottomAnchorBar": {
+          "time": 1788181200,
+          "timeET": "8/31, 9:00 AM",
+          "price": "29377.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:36:43.484Z",
+    "filled_at_epoch": 1788183439,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/31, 9:38 AM",
+    "mfe": 32.5,
+    "mae": 0.75,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BULL:1788184020:1788184020",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Bullish: CISD confirmed, price retraced into the 0.705 OTE with independent IFVG confirmation.",
+    "first_armed_at": "2026-08-31T13:49:13.594Z",
+    "first_armed_at_epoch": 1788184153,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29413.5,
+      "stop": 29394.25,
+      "tp1": 29516.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/31, 9:47 AM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 5.36,
+      "rr2": null,
+      "riskPoints": 19.25,
+      "breakevenAt": 29428.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1788184020,
+          "timeET": "8/31, 9:47 AM",
+          "close": "29470.00"
+        },
+        "topAnchorBar": {
+          "time": 1788184080,
+          "timeET": "8/31, 9:48 AM",
+          "price": "29469.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1788183540,
+          "timeET": "8/31, 9:39 AM",
+          "price": "29390.25"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-31T13:51:29.700Z",
+    "filled_at_epoch": 1788184323,
+    "outcome": "BREAKEVEN (manual 15pt rule, pre-TP1)",
+    "outcome_bar_time": "8/31, 9:51 AM",
+    "mfe": 34.5,
+    "mae": 12,
+    "stage": "BE_TARGET_T1",
+    "resultR": 0
+  }
+]

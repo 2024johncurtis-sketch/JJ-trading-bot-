@@ -1,0 +1,36 @@
+{
+  "sessionDate": "2026-09-02",
+  "allTriggers": [
+    {
+      "dateStr": "2026-09-02",
+      "direction": "SHORT",
+      "entry": 29132.25,
+      "stop": 29154.25,
+      "target": 29088.25,
+      "risk": 22,
+      "rewardR": 2,
+      "outcome": "BREAKEVEN (manual 15pt rule)",
+      "outcomeAt": 1788361020,
+      "resultR": 0,
+      "mfeR": 0.95,
+      "maeR": 0.39
+    }
+  ],
+  "lastTick": {
+    "ts": "2026-09-02T20:46:28.371Z",
+    "etTime": "16:46",
+    "today": {
+      "date": "2026-09-02",
+      "upperLedge": null,
+      "lowerLedge": null,
+      "bias": null,
+      "manipUp": false,
+      "manipDn": false,
+      "longTrigger": false,
+      "shortTrigger": false
+    },
+    "todayDate": "2026-09-02",
+    "trades": [],
+    "price": 29155.5
+  }
+}

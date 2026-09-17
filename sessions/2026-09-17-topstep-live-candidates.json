@@ -1,0 +1,24 @@
+[
+  {
+    "id": 3538621033,
+    "orderId": 3538621033,
+    "model": "JJ's Model",
+    "direction": "BEAR",
+    "plan": {
+      "entry": 29729.75,
+      "stop": 29748.75,
+      "tp1": 29368.75,
+      "riskPoints": 19
+    },
+    "size": 3,
+    "armed_at": "2026-09-17T14:51:08.842Z",
+    "realEntry": 29729.75,
+    "filled": true,
+    "filled_at": "2026-09-17T15:41:07.352Z",
+    "outcome": "CLOSED (external — likely TopStep's own daily profit/loss target liquidation, not a stop or target hit)",
+    "resultR": null,
+    "exitPrice": 29679.5,
+    "closed_at": "2026-09-17T15:50:27.973Z",
+    "points": 50.25
+  }
+]

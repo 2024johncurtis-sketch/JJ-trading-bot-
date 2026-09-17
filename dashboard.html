@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Trading System Dashboard</title>
+<style>
+  :root {
+    --bg: #101318; --card: #171b24; --card2: #1c212c; --border: #2a2e39;
+    --text: #d1d4dc; --dim: #787b86; --green: #26a69a; --red: #ef5350;
+    --blue: #2962ff; --yellow: #d4a017; --mono: 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px; line-height: 1.5;
+  }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 16px 20px 60px; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  .subtitle { color: var(--dim); font-size: 12px; margin-bottom: 20px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .card .label { color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .card .value { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+  .card .sub { color: var(--dim); font-size: 11px; margin-top: 2px; }
+  .pos { color: var(--green); } .neg { color: var(--red); } .neu { color: var(--dim); }
+  section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+  section > .sechead { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  section > .sechead h2 { font-size: 14px; margin: 0; }
+  section > .sechead .meta { color: var(--dim); font-size: 11px; font-family: var(--mono); }
+  section > .secbody { padding: 14px 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { color: var(--dim); font-weight: 500; cursor: pointer; user-select: none; position: sticky; top: 0; background: var(--card); }
+  th:hover { color: var(--text); }
+  tr.armed { background: rgba(38,166,154,0.08); }
+  tr.rejected { color: var(--dim); font-style: italic; }
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 10px; font-weight: 600; }
+  .badge.ARMED { background: var(--green); color: #04211d; }
+  .badge.EYES_ON { background: var(--yellow); color: #201800; }
+  .badge.WATCHING { background: var(--border); color: var(--dim); }
+  .nodata { color: var(--dim); font-style: italic; padding: 8px 0; }
+  .nodata .reason { font-size: 11px; margin-top: 3px; }
+  .stalewarn { color: var(--yellow); font-size: 11px; margin-bottom: 8px; }
+  .table-wrap { overflow-x: auto; max-height: 420px; overflow-y: auto; }
+  .filters { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .filters select, .filters input { background: var(--card2); color: var(--text); border: 1px solid var(--border); border-radius: 4px; padding: 4px 8px; font-size: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+  .barrow { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 12px; }
+  .barrow .key { width: 190px; flex-shrink: 0; color: var(--dim); }
+  .barrow .track { flex: 1; height: 14px; background: var(--card2); border-radius: 3px; overflow: hidden; }
+  .barrow .fill { height: 100%; }
+  .barrow .n { width: 130px; flex-shrink: 0; text-align: right; font-family: var(--mono); font-size: 11px; }
+  .insufficient { opacity: 0.4; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+  .dot.up { background: var(--green); } .dot.down { background: var(--red); } .dot.off { background: var(--dim); }
+  .oneliner { background: var(--card2); border-left: 3px solid var(--blue); padding: 8px 12px; border-radius: 4px; font-size: 12.5px; margin-bottom: 12px; }
+  .evo-entry { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .evo-entry .date { color: var(--dim); font-family: var(--mono); margin-right: 8px; }
+  code { background: var(--card2); padding: 1px 5px; border-radius: 3px; font-family: var(--mono); font-size: 11px; }
+  svg text { fill: var(--dim); font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Trading System Dashboard</h1>
+  <div class="subtitle" id="genAt">loading...</div>
+
+  <div class="cards" id="headerCards"></div>
+
+  <section style="border-color:var(--yellow)">
+    <div class="sechead"><h2>⚠ Live Trading — Real Money (current eval)</h2><span class="meta" id="liveTradingMeta"></span></div>
+    <div class="secbody" id="liveTrading"></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Live Setups</h2><span class="meta" id="liveSetupsMeta"></span></div>
+    <div class="secbody" id="liveSetups"></div>
+  </section>
+
+  <div class="grid2">
+    <section>
+      <div class="sechead"><h2>Equity Curve</h2><span class="meta" id="equityMeta"></span></div>
+      <div class="secbody" id="equityChart"></div>
+    </section>
+    <section>
+      <div class="sechead"><h2>Gate Analytics — where candidates die</h2><span class="meta" id="gateMeta"></span></div>
+      <div class="secbody" id="gateAnalytics"></div>
+    </section>
+  </div>
+
+  <section>
+    <div class="sechead"><h2>Daily P&amp;L — 1 NQ ($20/pt)</h2><span class="meta" id="dollarMeta"></span></div>
+    <div class="secbody" id="dollarPnl"></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Trade Journal</h2><span class="meta" id="journalMeta"></span></div>
+    <div class="secbody" id="journal"></div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Breakdown Stats</h2><span class="meta" id="breakdownMeta"></span></div>
+    <div class="secbody" id="breakdown"></div>
+  </section>
+
+  <div class="grid2">
+    <section>
+      <div class="sechead"><h2>Audit Panel</h2><span class="meta" id="auditMeta"></span></div>
+      <div class="secbody" id="audit"></div>
+    </section>
+    <section>
+      <div class="sechead"><h2>System Health &amp; Change Log</h2><span class="meta" id="healthMeta"></span></div>
+      <div class="secbody" id="health"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+let journalSort = { col: 'date', dir: -1 };
+let journalFilter = { model: 'all', sessionType: 'all' };
+let lastData = null;
+
+function esc(s) { return (s ?? '').toString().replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtNum(n, d=2) { return n == null ? 'n/a' : Number(n).toFixed(d); }
+function rClass(r) { return r == null ? 'neu' : r > 0 ? 'pos' : r < 0 ? 'neg' : 'neu'; }
+function timeAgo(iso) {
+  if (!iso) return 'n/a';
+  const s = Math.round((Date.now() - new Date(iso).getTime()) / 1000);
+  if (s < 60) return `${s}s ago`;
+  if (s < 3600) return `${Math.round(s/60)}m ago`;
+  return `${Math.round(s/3600)}h ago`;
+}
+function noDataBlock(reason) {
+  return `<div class="nodata">No data.<div class="reason">${esc(reason || 'source file not found')}</div></div>`;
+}
+
+function renderHeader(d) {
+  document.getElementById('genAt').textContent = `Refreshed ${new Date(d.generatedAt).toLocaleTimeString()} — auto-refreshes every 30s`;
+  const h = d.header;
+  const t = h.totals;
+  const cards = [];
+  cards.push(`<div class="card"><div class="label">NQ Price</div><div class="value">${h.price.noData ? 'n/a' : fmtNum(h.price.value, 2)}</div><div class="sub">${h.price.noData ? esc(h.price.reason) : 'as of ' + esc(h.price.etTime) + ' ET (latest scan)'}</div></div>`);
+  cards.push(`<div class="card"><div class="label">Session</div><div class="value" style="font-size:16px">${esc(h.sessionStatusET)}</div></div>`);
+  const pollerLine = (name, p) => `<span class="dot ${p.running ? 'up' : 'off'}"></span>${name}${p.lastTick ? ' · ' + esc(p.lastTick.etTime || '') : ''}`;
+  cards.push(`<div class="card"><div class="label">Pollers</div><div class="value" style="font-size:13px;line-height:1.9">${pollerLine('shadow', h.poller.shadow)}<br>${pollerLine('rebalance', h.poller.rebalance)}<br>${pollerLine('topstep-live', h.poller.topstepLive)}</div></div>`);
+  if (t.noData) {
+    cards.push(`<div class="card"><div class="label">Scored Calls</div><div class="value neu">n/a</div><div class="sub">${esc(t.reason)}</div></div>`);
+  } else {
+    cards.push(`<div class="card"><div class="label">Scored Calls</div><div class="value">${t.totalScored}</div></div>`);
+    cards.push(`<div class="card"><div class="label">Cumulative R</div><div class="value ${rClass(t.cumulativeR)}">${t.cumulativeR > 0 ? '+' : ''}${fmtNum(t.cumulativeR)}</div></div>`);
+    cards.push(`<div class="card"><div class="label">Win Rate</div><div class="value">${t.winRate == null ? 'n/a' : t.winRate + '%'}</div></div>`);
+    cards.push(`<div class="card"><div class="label">Current Streak</div><div class="value">${esc(t.currentStreak)}</div></div>`);
+  }
+  const dp = d.header.dailyDollarPnl;
+  if (dp && !dp.noData) {
+    cards.push(`<div class="card"><div class="label">Cumulative $ (1 NQ)</div><div class="value ${rClass(dp.totalDollars)}">${dp.totalDollars>=0?'+':''}$${fmtNum(dp.totalDollars,2)}</div><div class="sub">${dp.totalPoints>=0?'+':''}${fmtNum(dp.totalPoints)}pt</div></div>`);
+  }
+  document.getElementById('headerCards').innerHTML = cards.join('');
+}
+
+function renderDollarPnl(dp) {
+  document.getElementById('dollarMeta').textContent = dp.noData ? '' : timeAgo(dp.lastUpdate);
+  const el = document.getElementById('dollarPnl');
+  if (dp.noData) { el.innerHTML = noDataBlock(dp.reason); return; }
+  const rows = dp.days.slice().reverse().map(day => `<tr>
+    <td>${esc(day.date)}</td><td>${day.trades}</td>
+    <td class="${rClass(day.points)}">${day.points>=0?'+':''}${fmtNum(day.points)}pt</td>
+    <td class="${rClass(day.dollars)}">${day.dollars>=0?'+':''}$${fmtNum(day.dollars,2)}</td>
+  </tr>`).join('');
+  el.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Date</th><th>Trades</th><th>Points</th><th>$ (1 NQ)</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="sub" style="color:var(--dim);font-size:11px;margin-top:8px">Total: ${dp.totalPoints>=0?'+':''}${fmtNum(dp.totalPoints)}pt = ${dp.totalDollars>=0?'+':''}$${fmtNum(dp.totalDollars,2)}. ${esc(dp.note)}</div>`;
+}
+
+function renderLiveTrading(lt) {
+  document.getElementById('liveTradingMeta').textContent = lt.noData ? '' : timeAgo(lt.lastUpdate);
+  const el = document.getElementById('liveTrading');
+  if (lt.noData) { el.innerHTML = noDataBlock(lt.reason); return; }
+  const cards = `<div class="cards" style="margin-bottom:12px">
+    <div class="card"><div class="label">Real Trades</div><div class="value">${lt.totalTrades}</div><div class="sub">${lt.resolvedCount} resolved</div></div>
+    <div class="card"><div class="label">Win Rate</div><div class="value">${lt.winRate==null?'n/a':lt.winRate+'%'}</div></div>
+    <div class="card"><div class="label">Points (1 NQ)</div><div class="value ${rClass(lt.totalPoints)}">${lt.totalPoints>=0?'+':''}${fmtNum(lt.totalPoints)}</div></div>
+    <div class="card"><div class="label">$ (est., no fees)</div><div class="value ${rClass(lt.totalDollars)}">${lt.totalDollars>=0?'+':''}$${fmtNum(lt.totalDollars,2)}</div></div>
+  </div>`;
+  const rows = lt.rows.slice().reverse().map(r => `<tr>
+    <td>${esc(r.sessionDate)}</td><td>${esc(r.direction)}</td>
+    <td>${fmtNum(r.plan?.entry)}</td><td>${fmtNum(r.realEntry)}</td><td>${fmtNum(r.plan?.stop)}</td>
+    <td>${r.filled ? 'yes' : 'no'}</td>
+    <td title="${esc(r.outcome)}">${esc((r.outcome||'—').slice(0,40))}${(r.outcome||'').length>40?'…':''}</td>
+    <td>${fmtNum(r.exitPrice)}</td>
+    <td class="${rClass(r.points)}">${r.filled && r.outcome && !r.outcome.startsWith('CANCELLED') ? (r.points>=0?'+':'')+fmtNum(r.points) : '—'}</td>
+    <td class="${rClass(r.dollars)}">${r.filled && r.outcome && !r.outcome.startsWith('CANCELLED') ? (r.dollars>=0?'+':'')+'$'+fmtNum(r.dollars,2) : '—'}</td>
+    <td>${r.backfilled ? '<span title="'+esc(r.backfillNote)+'">✓ reconciled</span>' : ''}</td>
+  </tr>`).join('');
+  el.innerHTML = cards + `<div class="table-wrap"><table><thead><tr><th>Date</th><th>Dir</th><th>Planned Entry</th><th>Real Fill</th><th>Stop</th><th>Filled</th><th>Outcome</th><th>Exit</th><th>Points</th><th>$</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="sub" style="color:var(--dim);font-size:11px;margin-top:8px">${esc(lt.note)}</div>`;
+}
+
+function renderLiveSetups(ls) {
+  document.getElementById('liveSetupsMeta').textContent = ls.noData ? '' : `${timeAgo(ls.lastUpdate)}${ls.stale ? ' · STALE' : ''}`;
+  const el = document.getElementById('liveSetups');
+  if (ls.noData) { el.innerHTML = noDataBlock(ls.reason); return; }
+  let html = '';
+  if (ls.stale) html += `<div class="stalewarn">⚠ Last scan was ${ls.ageSeconds}s ago — poller may not currently be active.</div>`;
+  const rows = ls.candidates.map(c => {
+    const p = c.plan;
+    return `<tr class="${c.state === 'ARMED' ? 'armed' : ''}">
+      <td><span class="badge ${c.state}">${c.state}</span></td>
+      <td>${esc(c.model)}</td><td>${esc(c.direction)}</td>
+      <td>${p ? fmtNum(p.entry) : '—'}</td><td>${p ? fmtNum(p.stop) : '—'}</td><td>${p ? fmtNum(p.tp1 ?? p.target) : '—'}</td>
+      <td>${p ? fmtNum(p.riskPoints ?? p.risk) : '—'}</td>
+      <td>${c.distance != null ? fmtNum(c.distance) : '—'}</td>
+      <td>${esc(c.path || '—')}</td>
+      <td title="${esc(c.grade)}">${esc((c.grade||'').slice(0,50))}${(c.grade||'').length>50?'…':''}</td>
+    </tr>`;
+  }).join('');
+  const rejRows = ls.rejectedCandidates.map(c => `<tr class="rejected"><td colspan="9">REJECTED — ${esc(c.model)} ${esc(c.direction)}: ${esc(c.reason)}</td></tr>`).join('');
+  html += `<div class="table-wrap"><table><thead><tr><th>State</th><th>Model</th><th>Dir</th><th>Entry</th><th>Stop</th><th>TP</th><th>Risk(pt)</th><th>Dist</th><th>Path</th><th>Grade</th></tr></thead><tbody>${rows || '<tr><td colspan="9" class="nodata">No candidates this tick</td></tr>'}${rejRows}</tbody></table></div>`;
+  el.innerHTML = html;
+}
+
+function renderEquity(eq) {
+  document.getElementById('equityMeta').textContent = eq.noData ? '' : timeAgo(eq.lastUpdate);
+  const el = document.getElementById('equityChart');
+  if (eq.noData || eq.equityPoints.length === 0) { el.innerHTML = noDataBlock(eq.reason || 'no resolved trades yet'); return; }
+  const pts = eq.equityPoints;
+  const w = 600, h = 220, pad = 30;
+  const maxR = Math.max(...pts.map(p => p.cumR), 0);
+  const minR = Math.min(...pts.map(p => p.cumR), 0);
+  const range = (maxR - minR) || 1;
+  const x = i => pad + (i / (pts.length - 1 || 1)) * (w - pad * 2);
+  const y = v => h - pad - ((v - minR) / range) * (h - pad * 2);
+  const path = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(p.cumR).toFixed(1)}`).join(' ');
+  const zeroY = y(0);
+  const last = pts[pts.length - 1];
+  el.innerHTML = `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:220px">
+    <line x1="${pad}" y1="${zeroY}" x2="${w-pad}" y2="${zeroY}" stroke="var(--border)" stroke-dasharray="3,3"/>
+    <path d="${path}" fill="none" stroke="${last.cumR >= 0 ? 'var(--green)' : 'var(--red)'}" stroke-width="2"/>
+    <text x="${pad}" y="14">${fmtNum(maxR)}R</text>
+    <text x="${pad}" y="${h-10}">${fmtNum(minR)}R</text>
+    <text x="${w-pad-40}" y="14">n=${pts.length}</text>
+  </svg>
+  <div class="sub" style="color:var(--dim);font-size:11px;margin-top:4px">All points currently "live shadow" — no persisted backtest-run journal exists yet (see note below journal table).</div>`;
+}
+
+function renderGate(ga) {
+  document.getElementById('gateMeta').textContent = ga.noData ? '' : timeAgo(ga.lastUpdate);
+  const el = document.getElementById('gateAnalytics');
+  if (ga.noData) { el.innerHTML = noDataBlock(ga.reason); return; }
+  const entries = Object.entries(ga.counts);
+  const max = Math.max(...entries.map(([,v]) => v), 1);
+  const colorFor = (k) => k === 'Passed all gates' ? 'var(--green)' : k.startsWith('Rejected') ? 'var(--red)' : 'var(--blue)';
+  el.innerHTML = entries.map(([k, v]) => `
+    <div class="barrow"><div class="key">${esc(k)}</div>
+      <div class="track"><div class="fill" style="width:${(v/max*100).toFixed(1)}%;background:${colorFor(k)}"></div></div>
+      <div class="n">${v}</div>
+    </div>`).join('') + `<div class="sub" style="color:var(--dim);font-size:11px;margin-top:8px">Across ${ga.totalTicks} logged scan ticks. ${esc(ga.note)}</div>`;
+}
+
+function renderJournal(eq) {
+  document.getElementById('journalMeta').textContent = eq.noData ? '' : timeAgo(eq.lastUpdate);
+  const el = document.getElementById('journal');
+  if (eq.noData) { el.innerHTML = noDataBlock(eq.reason); return; }
+  const models = [...new Set(eq.journal.map(j => j.model))];
+  const types = [...new Set(eq.journal.map(j => j.sessionType))];
+  let rows = eq.journal.filter(j =>
+    (journalFilter.model === 'all' || j.model === journalFilter.model) &&
+    (journalFilter.sessionType === 'all' || j.sessionType === journalFilter.sessionType)
+  );
+  rows = rows.slice().sort((a, b) => {
+    const av = a[journalSort.col], bv = b[journalSort.col];
+    if (av == null) return 1; if (bv == null) return -1;
+    return av > bv ? journalSort.dir : av < bv ? -journalSort.dir : 0;
+  });
+  const cols = [
+    ['date','Date'],['sessionType','Type'],['model','Model'],['direction','Dir'],
+    ['entry','Entry'],['stop','Stop'],['tp','TP'],['filled','Filled'],['outcome','Outcome'],
+    ['resultR','R'],['mfe','MFE'],['mae','MAE'],['grade','Grade'],['detectionPath','Path'],
+  ];
+  const head = cols.map(([k,l]) => `<th onclick="setJournalSort('${k}')">${l}${journalSort.col===k?(journalSort.dir>0?' ▲':' ▼'):''}</th>`).join('');
+  const body = rows.map(j => `<tr>
+    <td>${esc(j.date)}</td><td>${esc(j.sessionType)}</td><td>${esc(j.model)}</td><td>${esc(j.direction)}</td>
+    <td>${fmtNum(j.entry)}</td><td>${fmtNum(j.stop)}</td><td>${fmtNum(j.tp)}</td>
+    <td>${j.filled ? 'yes' : 'no'}</td><td>${esc(j.outcome)}</td>
+    <td class="${rClass(j.resultR)}">${j.resultR == null ? '—' : (j.resultR>0?'+':'')+fmtNum(j.resultR)}</td>
+    <td>${fmtNum(j.mfe)}</td><td>${fmtNum(j.mae)}</td>
+    <td title="${esc(j.grade)}">${esc((j.grade||'').slice(0,30))}</td><td>${esc(j.detectionPath || '—')}</td>
+  </tr>`).join('');
+  el.innerHTML = `
+    <div class="filters">
+      <select onchange="journalFilter.model=this.value;render(lastData)"><option value="all">All models</option>${models.map(m=>`<option value="${esc(m)}" ${journalFilter.model===m?'selected':''}>${esc(m)}</option>`).join('')}</select>
+      <select onchange="journalFilter.sessionType=this.value;render(lastData)"><option value="all">All session types</option>${types.map(t=>`<option value="${esc(t)}" ${journalFilter.sessionType===t?'selected':''}>${esc(t)}</option>`).join('')}</select>
+      <span style="color:var(--dim);align-self:center">${rows.length} rows</span>
+    </div>
+    <div class="table-wrap"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>
+    <div class="sub" style="color:var(--dim);font-size:11px;margin-top:8px">Discipline flags: no data — not tracked in the current data model. ${esc(eq.note)}</div>`;
+}
+function setJournalSort(col) {
+  if (journalSort.col === col) journalSort.dir *= -1; else { journalSort.col = col; journalSort.dir = 1; }
+  render(lastData);
+}
+
+function renderBreakdown(b) {
+  document.getElementById('breakdownMeta').textContent = b.noData ? '' : timeAgo(b.lastUpdate);
+  const el = document.getElementById('breakdown');
+  if (b.noData) { el.innerHTML = noDataBlock(b.reason); return; }
+  function barsFor(title, rows) {
+    if (rows.noData) return `<h3 style="font-size:12px;color:var(--dim)">${title}</h3>${noDataBlock(rows.reason)}`;
+    const max = Math.max(...rows.map(r => Math.abs(r.avgR)), 0.01);
+    return `<h3 style="font-size:12px;color:var(--dim)">${title}</h3>` + rows.map(r => `
+      <div class="barrow ${r.insufficientSample ? 'insufficient' : ''}">
+        <div class="key">${esc(r.key)}</div>
+        <div class="track"><div class="fill" style="width:${Math.min(Math.abs(r.avgR)/max*100,100).toFixed(1)}%;background:${r.avgR>=0?'var(--green)':'var(--red)'}"></div></div>
+        <div class="n">avgR ${r.avgR>=0?'+':''}${fmtNum(r.avgR)} · WR ${r.winRate}% · n=${r.n}${r.insufficientSample?' (insufficient)':''}</div>
+      </div>`).join('');
+  }
+  el.innerHTML = `<div class="grid3">
+    <div>${barsFor('By Model', b.byModel)}</div>
+    <div>${barsFor('By Detection Path', b.byDetectionPath)}</div>
+    <div>${barsFor('By A+ Overlap (gap-matched)', b.byGapMatched)}</div>
+    <div>${barsFor('By Session Type', b.bySessionType)}</div>
+    <div>${barsFor('By Grade (A/B/C)', b.byGrade)}</div>
+    <div>${barsFor('By Re-arm vs First-attempt', b.byRearm)}</div>
+  </div>
+  <div class="sub" style="color:var(--dim);font-size:11px;margin-top:10px">${esc(b.note)}</div>`;
+}
+
+function renderAudit(a) {
+  document.getElementById('auditMeta').textContent = timeAgo(a.lastUpdate);
+  const el = document.getElementById('audit');
+  const ciBlock = (label, ci) => ci.noData
+    ? `<div><b>${label}:</b> ${noDataBlock(ci.reason)}</div>`
+    : `<div><b>${label}:</b> [${fmtNum(ci.lo,1)}, ${fmtNum(ci.hi,1)}] (90% bootstrap CI)</div>`;
+  let regHtml;
+  if (a.lastWalkForward.noData) regHtml = noDataBlock(a.lastWalkForward.reason);
+  else {
+    regHtml = `<div style="font-size:11px;color:var(--dim)">baseline written ${new Date(a.lastWalkForward.baselineWrittenAt).toLocaleString()} · re-run just now (${new Date(a.lastWalkForward.ranAt).toLocaleTimeString()})</div>`;
+    regHtml += a.lastWalkForward.results.map(r => `<div>${esc(r.id)}: current ${fmtNum(r.currentR)}R vs baseline ${fmtNum(r.baselineR)}R — <b class="${r.pass?'pos':'neg'}">${r.pass?'PASS':'FAIL'}</b></div>`).join('');
+  }
+  el.innerHTML = `
+    <div class="oneliner">${esc(a.oneLiner)}</div>
+    <div><b>Holdout split:</b> ${a.holdoutSplit.noData ? noDataBlock(a.holdoutSplit.reason) : 'defined'}</div>
+    ${ciBlock('Win-rate 90% CI', a.winRateBootstrapCI)}
+    ${ciBlock('Avg-R 90% CI', a.avgRBootstrapCI)}
+    <div style="margin-top:8px"><b>Last walk-forward / regression result:</b>${regHtml}</div>
+  `;
+}
+
+function renderHealth(h) {
+  document.getElementById('healthMeta').textContent = '';
+  const el = document.getElementById('health');
+  let html = '<h3 style="font-size:12px;color:var(--dim)">Recent EVOLUTION.md entries</h3>';
+  html += h.evolutionLog.noData ? noDataBlock(h.evolutionLog.reason) :
+    h.evolutionLog.entries.map(e => `<div class="evo-entry"><span class="date">${esc(e.date)}</span>${esc(e.title)}</div>`).join('');
+  html += '<h3 style="font-size:12px;color:var(--dim);margin-top:12px">Open Proposals</h3>';
+  html += h.proposals.noData ? noDataBlock(h.proposals.reason) : 'tracked in PROPOSALS.md';
+  html += '<h3 style="font-size:12px;color:var(--dim);margin-top:12px">Known Limitations</h3>';
+  html += h.knownLimitations.noData ? noDataBlock(h.knownLimitations.reason) : `<div style="font-size:12px">${esc(h.knownLimitations.text)}</div>`;
+  el.innerHTML = html;
+}
+
+function render(d) {
+  lastData = d;
+  renderHeader(d);
+  renderLiveTrading(d.liveTrading);
+  renderLiveSetups(d.liveSetups);
+  renderEquity(d.equityAndJournal);
+  renderGate(d.gateAnalytics);
+  renderDollarPnl(d.header.dailyDollarPnl);
+  renderJournal(d.equityAndJournal);
+  renderBreakdown(d.breakdown);
+  renderAudit(d.audit);
+  renderHealth(d.systemHealth);
+}
+
+async function tick() {
+  try {
+    const res = await fetch('/api/data');
+    const d = await res.json();
+    render(d);
+  } catch (err) {
+    document.getElementById('genAt').textContent = 'Failed to reach dashboard server: ' + err.message;
+  }
+}
+tick();
+setInterval(tick, 30000);
+</script>
+</body>
+</html>

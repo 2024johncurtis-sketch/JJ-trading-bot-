@@ -1,0 +1,42 @@
+[
+  {
+    "id": 3521650959,
+    "orderId": 3521650959,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 28936.75,
+      "stop": 28930.75,
+      "tp1": 29089,
+      "riskPoints": 6
+    },
+    "armed_at": "2026-09-14T14:37:07.587Z",
+    "realEntry": null,
+    "filled": false,
+    "filled_at": null,
+    "outcome": "CANCELLED (never filled)",
+    "resultR": null,
+    "exitPrice": null,
+    "closed_at": "2026-09-14T15:29:00.429Z"
+  },
+  {
+    "id": 3522678200,
+    "orderId": 3522678200,
+    "model": "JJ's Model",
+    "direction": "BULL",
+    "plan": {
+      "entry": 29207.5,
+      "stop": 29188,
+      "tp1": 29277.25,
+      "riskPoints": 19.5
+    },
+    "armed_at": "2026-09-14T16:58:05.087Z",
+    "realEntry": null,
+    "filled": false,
+    "filled_at": null,
+    "outcome": "CANCELLED (never filled)",
+    "resultR": null,
+    "exitPrice": null,
+    "closed_at": "2026-09-14T17:41:55.950Z"
+  }
+]

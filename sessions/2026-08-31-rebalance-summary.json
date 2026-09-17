@@ -1,0 +1,21 @@
+{
+  "sessionDate": "2026-08-31",
+  "allTriggers": [],
+  "lastTick": {
+    "ts": "2026-08-31T13:59:59.932Z",
+    "etTime": "09:59",
+    "today": {
+      "date": "2026-08-31",
+      "upperLedge": 29353.5,
+      "lowerLedge": 29338.75,
+      "bias": "BEARISH",
+      "manipUp": false,
+      "manipDn": false,
+      "longTrigger": false,
+      "shortTrigger": false
+    },
+    "todayDate": "2026-08-31",
+    "trades": [],
+    "price": 29437.75
+  }
+}

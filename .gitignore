@@ -1,0 +1,20 @@
+node_modules/
+screenshots/
+scripts/current.pine
+temp_*
+*.log
+discovery-log.json
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+discord-config.json
+topstep-config.json
+
+# Install-time symlink created by the one-shot setup
+AGENTS.md
+scalper-run.js
+safety-check-log.json
+sessions/poller.pid
+.git.old-crypto-scalper-backup/

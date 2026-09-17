@@ -1,0 +1,39 @@
+{
+  "writtenAt": "2026-07-31T15:29:22.545Z",
+  "sessions": {
+    "2026-07-16": {
+      "cisdEvents": 10,
+      "expiredEvents": 2,
+      "armedCount": 4,
+      "gatePassCount": 0,
+      "scoredCount": 0,
+      "wins": 0,
+      "losses": 0,
+      "openCount": 0,
+      "cumulativeR": 0,
+      "byPath": {
+        "single-candle": {
+          "armed": 4,
+          "gatePass": 0
+        }
+      }
+    },
+    "2026-07-17": {
+      "cisdEvents": 11,
+      "expiredEvents": 1,
+      "armedCount": 3,
+      "gatePassCount": 2,
+      "scoredCount": 2,
+      "wins": 0,
+      "losses": 2,
+      "openCount": 0,
+      "cumulativeR": -2,
+      "byPath": {
+        "single-candle": {
+          "armed": 3,
+          "gatePass": 2
+        }
+      }
+    }
+  }
+}

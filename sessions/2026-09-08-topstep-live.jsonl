@@ -1,0 +1,6 @@
+{"event":"START","ts":"2026-09-09T00:51:42.862Z","etTime":"20:51","start":"2026-09-09 07:00 ET","cutoff":"10:00","accountId":27357686,"contractId":"CON.F.US.ENQ.U26","sessionStartBalance":51393.66,"maxDailyProfit":1550,"maxDailyLoss":1800}
+{"event":"WAITING_FOR_START","ts":"2026-09-09T00:51:42.867Z","etTime":"20:51","start":"2026-09-09 07:00 ET"}
+{"event":"START_REACHED","ts":"2026-09-09T11:00:04.297Z","etTime":"07:00"}
+{"event":"ARMED","ts":"2026-09-09T12:03:17.427Z","etTime":"08:03","direction":"BULL","plan":{"direction":"BULL","entry":29392.75,"stop":29388.75,"tp1":29633.75,"riskPoints":4,"passesGate":true}}
+{"event":"ORDER_PLACED","ts":"2026-09-09T12:03:17.822Z","etTime":"08:03","direction":"BULL","plan":{"direction":"BULL","entry":29392.75,"stop":29388.75,"tp1":29633.75,"riskPoints":4,"passesGate":true},"orderId":3503701467,"rearm":false}
+{"event":"REJECTED","ts":"2026-09-09T12:47:32.731Z","etTime":"08:47","direction":"BEAR","plan":{"direction":"BEAR","entry":29418.25,"stop":29452.25,"tp1":29333,"riskPoints":34,"passesGate":false}}

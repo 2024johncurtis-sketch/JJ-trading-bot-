@@ -1,0 +1,145 @@
+[
+  {
+    "id": "chrome:BULL:1787327460:1787338440",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-08-21T19:34:06.669Z",
+    "first_armed_at_epoch": 1787340846,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29376.75,
+      "stop": 29373.25,
+      "tp1": 29539,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/21, 2:54 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 46.36,
+      "rr2": null,
+      "riskPoints": 3.5,
+      "breakevenAt": 29391.75,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1787327460,
+          "timeET": "8/21, 11:51 AM",
+          "close": "29484.50"
+        },
+        "topAnchorBar": {
+          "time": 1787327640,
+          "timeET": "8/21, 11:54 AM",
+          "price": "29485.00"
+        },
+        "bottomAnchorBar": {
+          "time": 1787325660,
+          "timeET": "8/21, 11:21 AM",
+          "price": "29331.50"
+        }
+      }
+    },
+    "filled": false,
+    "filled_at": null,
+    "filled_at_epoch": null,
+    "outcome": null,
+    "outcome_bar_time": null,
+    "mfe": 55.5,
+    "mae": 20.25
+  },
+  {
+    "id": "chrome:BEAR:1787332860:1787332860",
+    "model": "Chrome",
+    "direction": "BEAR",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-08-21T19:39:52.883Z",
+    "first_armed_at_epoch": 1787341192,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BEAR",
+      "entry": 29395,
+      "stop": 29414.5,
+      "tp1": 29258,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/21, 1:21 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 7.03,
+      "rr2": null,
+      "riskPoints": 19.5,
+      "breakevenAt": 29380,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1787332860,
+          "timeET": "8/21, 1:21 PM",
+          "close": "29387.50"
+        },
+        "topAnchorBar": {
+          "time": 1787332440,
+          "timeET": "8/21, 1:14 PM",
+          "price": "29410.25"
+        },
+        "bottomAnchorBar": {
+          "time": 1787337060,
+          "timeET": "8/21, 2:31 PM",
+          "price": "29358.50"
+        }
+      }
+    },
+    "filled": true,
+    "filled_at": "2026-08-21T19:39:52.888Z",
+    "filled_at_epoch": 1787341227,
+    "outcome": "STOP",
+    "outcome_bar_time": "8/21, 3:45 PM",
+    "mfe": 2,
+    "mae": 37.25,
+    "stage": "FULL",
+    "resultR": -1
+  },
+  {
+    "id": "chrome:BULL:1787340600:1787340420",
+    "model": "Chrome",
+    "direction": "BULL",
+    "grade": "Chrome-only (not A+ unless a Brian's candidate overlaps — checked below)",
+    "first_armed_at": "2026-08-21T19:39:52.883Z",
+    "first_armed_at_epoch": 1787341192,
+    "plan": {
+      "model": "Chrome",
+      "direction": "BULL",
+      "entry": 29391.5,
+      "stop": 29389,
+      "tp1": 29488.75,
+      "tp2": null,
+      "stopSource": "our own IFVG invalidation extreme (inverted 8/21, 3:27 PM)",
+      "tp2Source": "no further Bryan's-marked structure found — no TP2",
+      "rr1": 38.9,
+      "rr2": null,
+      "riskPoints": 2.5,
+      "breakevenAt": 29406.5,
+      "breakevenPoints": 15,
+      "anchors": {
+        "cisdBar": {
+          "time": 1787340600,
+          "timeET": "8/21, 3:30 PM",
+          "close": "29405.50"
+        },
+        "topAnchorBar": {
+          "time": 1787341080,
+          "timeET": "8/21, 3:38 PM",
+          "price": "29409.75"
+        },
+        "bottomAnchorBar": {
+          "time": 1787340000,
+          "timeET": "8/21, 3:20 PM",
+          "price": "29383.75"
+        }
+      }
+    },
+    "filled": false,
+    "filled_at": null,
+    "filled_at_epoch": null,
+    "outcome": null,
+    "outcome_bar_time": null,
+    "mfe": 40.75,
+    "mae": 5.5
+  }
+]

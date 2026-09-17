@@ -1,0 +1,51 @@
+{
+  "sessionDate": "2026-08-19",
+  "allTriggers": [
+    {
+      "dateStr": "2026-08-19",
+      "direction": "LONG",
+      "entry": 29485,
+      "stop": 29406.5,
+      "target": 29642,
+      "risk": 78.5,
+      "rewardR": 2,
+      "outcome": "BREAKEVEN (manual 15pt rule)",
+      "outcomeAt": 1787147640,
+      "resultR": 0,
+      "mfeR": 0.52,
+      "maeR": 0.36
+    }
+  ],
+  "lastTick": {
+    "ts": "2026-08-19T20:20:05.200Z",
+    "etTime": "16:20",
+    "today": {
+      "date": "2026-08-19",
+      "upperLedge": 29546,
+      "lowerLedge": 29516.25,
+      "bias": "BULLISH",
+      "manipUp": true,
+      "manipDn": false,
+      "longTrigger": true,
+      "shortTrigger": false
+    },
+    "todayDate": "2026-08-19",
+    "trades": [
+      {
+        "dateStr": "2026-08-19",
+        "direction": "LONG",
+        "entry": 29485,
+        "stop": 29406.5,
+        "target": 29642,
+        "risk": 78.5,
+        "rewardR": 2,
+        "outcome": "BREAKEVEN (manual 15pt rule)",
+        "outcomeAt": 1787147640,
+        "resultR": 0,
+        "mfeR": 0.52,
+        "maeR": 0.36
+      }
+    ],
+    "price": 29568.5
+  }
+}

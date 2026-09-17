@@ -1,0 +1,4 @@
+{
+  "webhookUrl": "",
+  "alertWindow": { "start": "09:30", "end": "11:30" }
+}

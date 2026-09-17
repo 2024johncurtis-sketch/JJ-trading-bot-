@@ -1,0 +1,377 @@
+//@version=6
+strategy("Chrome Model Strategy (backtest)", shorttitle = "ChromeStrat", overlay = true,
+     pyramiding = 0, calc_on_every_tick = false, max_bars_back = 1000,
+     default_qty_type = strategy.fixed, default_qty_value = 1, initial_capital = 10000,
+     currency = currency.USD, commission_type = strategy.commission.cash_per_contract,
+     commission_value = 2.25, slippage = 2)
+
+// Chrome-model full-sequence backtest, 2026-07-20. Mirrors scan-chart.mjs's
+// detectChromeCISD/findChromeAnchors/computeChromeFib/findFVGs/findIFVGs/
+// nearestValidIfvg exactly (the canonical, independence-build detection —
+// see EVOLUTION.md 2026-07-18) — this is a Pine PORT of that same logic, not
+// a separate implementation, so results reflect the actual shipped stack.
+//
+// HONEST SIMPLIFICATIONS vs spec §2.1's literal three-stage description:
+//  - Stage 3 says "draw a NEW fib on the 3-minute chart over the confirmed
+//    leg" after the 5m inversion. This script uses the SAME 3m CISD-anchored
+//    fib for both the AOI check and the entry level — it does not redraw a
+//    second fib specifically over the confirmed leg. This matches what the
+//    live poller/scanner already do (see shadow-poller.mjs), so the backtest
+//    is evaluating the actually-shipped mechanism, not the maximal spec
+//    reading. Flagged, not hidden.
+//  - REQUIRES the chart to be displayed at 3m — no multi-timeframe adapter
+//    like the indicator has. A strategy backtest's fills are what's actually
+//    at stake here, so the simpler, lowest-repaint-risk path (native chart
+//    bars, no request.security_lower_tf reconstruction) was chosen over
+//    convenience. Run the Strategy Tester on a 3m NQ1! chart.
+//  - TP1 = nearest opposite-direction swing extreme in the currently-buffered
+//    3m window (same heuristic backtest/engine.mjs uses) — spec's "nearest
+//    DOL" is not independently re-derived here as a full liquidity model.
+//  - "One attempt per zone" (spec §5 rule 2) is approximated as "flat
+//    position only" — does not track per-CISD identity to block re-entering
+//    the same still-active zone after an unrelated flat period.
+
+// === Inputs — same names/defaults as scan-chart.mjs / chrome-anchor-debug.pine ===
+searchBars              = input.int(300, "CISD search window (3m bars)", minval = 50, maxval = 500)
+consolidationLookback   = input.int(10, "Consolidation lookback (3m bars before CISD)", minval = 3, maxval = 50)
+largeBodyMult           = input.float(1.5, "Large-body multiplier", minval = 1.0, maxval = 5.0)
+grindMinRun             = input.int(2, "Grind: min consecutive same-direction closes", minval = 2, maxval = 10)
+grindDisplacement       = input.float(80.0, "Grind: min displacement (points)", minval = 1.0)
+anchorMaxAgeHours       = input.float(2.0, "Anchor max age, intraday (hours)", minval = 0.25)
+oteProximity            = input.int(40, "OTE proximity (pts) — EYES_ON / actively-working threshold", minval = 1)
+ifvgProximity           = input.int(40, "IFVG proximity (pts) — confirmation match window", minval = 1)
+maxStopPoints           = input.float(20.0, "Max stop (points) — hard gate, mirrors rules.json", minval = 1.0)
+sessionWindow           = input.session("0930-1130", "Entry session window (ET)")
+tradeBear               = input.bool(true, "Trade BEAR setups")
+tradeBull               = input.bool(true, "Trade BULL setups")
+MAX_BUFFER              = 700
+// f_findIfvgs is O(n^2) over the 5m buffer (nested scan for FVG then its
+// inversion) — bounding it separately and much smaller keeps per-bar cost
+// sane across a multi-thousand-bar backtest. 120 5m bars = 10 hours of
+// recent structure, plenty for "5-minute inversion near the current AOI."
+MAX_BUFFER_5M           = 120
+
+// === 3m buffer — native chart bars, chart MUST be 3m (see header) ===
+var array<float> h3 = array.new_float(0)
+var array<float> l3 = array.new_float(0)
+var array<float> o3 = array.new_float(0)
+var array<float> c3 = array.new_float(0)
+var array<int>   t3 = array.new_int(0)
+
+isChart3m = timeframe.in_seconds(timeframe.period) == timeframe.in_seconds("3")
+if barstate.isconfirmed and isChart3m
+    array.push(h3, high)
+    array.push(l3, low)
+    array.push(o3, open)
+    array.push(c3, close)
+    array.push(t3, time)
+    if array.size(h3) > MAX_BUFFER
+        array.remove(h3, 0)
+        array.remove(l3, 0)
+        array.remove(o3, 0)
+        array.remove(c3, 0)
+        array.remove(t3, 0)
+
+// === 5m buffer — request.security, lookahead_off, de-duped by timestamp ===
+var array<float> h5 = array.new_float(0)
+var array<float> l5 = array.new_float(0)
+var array<float> o5 = array.new_float(0)
+var array<float> c5 = array.new_float(0)
+var array<int>   t5 = array.new_int(0)
+var int lastPushed5 = na
+
+h5req = request.security(syminfo.tickerid, "5", high, lookahead = barmerge.lookahead_off)
+l5req = request.security(syminfo.tickerid, "5", low, lookahead = barmerge.lookahead_off)
+o5req = request.security(syminfo.tickerid, "5", open, lookahead = barmerge.lookahead_off)
+c5req = request.security(syminfo.tickerid, "5", close, lookahead = barmerge.lookahead_off)
+t5req = request.security(syminfo.tickerid, "5", time, lookahead = barmerge.lookahead_off)
+
+if barstate.isconfirmed and not na(t5req) and (na(lastPushed5) or t5req != lastPushed5)
+    array.push(h5, h5req)
+    array.push(l5, l5req)
+    array.push(o5, o5req)
+    array.push(c5, c5req)
+    array.push(t5, t5req)
+    lastPushed5 := t5req
+    if array.size(h5) > MAX_BUFFER_5M
+        array.remove(h5, 0)
+        array.remove(l5, 0)
+        array.remove(o5, 0)
+        array.remove(c5, 0)
+        array.remove(t5, 0)
+
+// === IFVG UDT — mirrors scan-chart.mjs's findIFVGs() object shape ===
+type Ifvg
+    string direction
+    float level
+    float invalidation
+    int invertedTime
+    int invertedIdx
+
+// Scan the 5m buffer for FVGs then IFVGs (spec §1.1/§1.2), direction-verified
+// from which side of the gap inverted — not read from any indicator tag.
+f_findIfvgs(array<float> h, array<float> l, array<float> o, array<float> c, array<int> t) =>
+    ifvgs = array.new<Ifvg>(0)
+    n = array.size(h)
+    if n >= 3
+        for i = 2 to n - 1
+            c1h = array.get(h, i - 2), c1l = array.get(l, i - 2)
+            c3h = array.get(h, i), c3l = array.get(l, i)
+            isBullFvg = c1h < c3l
+            isBearFvg = c1l > c3h
+            if isBullFvg or isBearFvg
+                gTop = math.max(array.get(h, i - 2), array.get(h, i - 1), array.get(h, i))
+                gBot = math.min(array.get(l, i - 2), array.get(l, i - 1), array.get(l, i))
+                gapBottom = isBullFvg ? c1h : c3h
+                gapTop = isBullFvg ? c3l : c1l
+                for j = i + 1 to n - 1
+                    cj = array.get(c, j)
+                    if isBullFvg and cj < gapBottom
+                        array.push(ifvgs, Ifvg.new("BEAR", gapBottom, gTop, array.get(t, j), j))
+                        break
+                    if isBearFvg and cj > gapTop
+                        array.push(ifvgs, Ifvg.new("BULL", gapTop, gBot, array.get(t, j), j))
+                        break
+    ifvgs
+
+// Still valid (uninvalidated) as of the buffer's last index?
+f_ifvgValidAt(array<float> h, array<float> l, array<float> c, Ifvg f, int lastIdx) =>
+    valid = true
+    if f.invertedIdx > lastIdx
+        valid := false
+    else
+        for j = f.invertedIdx + 1 to lastIdx
+            cj = array.get(c, j)
+            if f.direction == "BEAR" and cj > f.invalidation
+                valid := false
+            if f.direction == "BULL" and cj < f.invalidation
+                valid := false
+    valid
+
+// Freshest (most recently inverted) valid IFVG within proximity — corrected
+// selection criterion, see EVOLUTION.md 2026-07-18 ("nearest by price" was
+// tried first, regressed a known day, replaced with this).
+f_nearestValidIfvg(array<Ifvg> ifvgs, array<float> h5b, array<float> l5b, array<float> c5b, string direction, float target, float proximity) =>
+    best = Ifvg.new(na, na, na, na, na)
+    bestTime = -1
+    lastIdx = array.size(h5b) - 1
+    for i = 0 to array.size(ifvgs) - 1
+        f = array.get(ifvgs, i)
+        if f.direction == direction and f.invertedTime > bestTime
+            d = math.abs(f.level - target)
+            if d <= proximity and f_ifvgValidAt(h5b, l5b, c5b, f, lastIdx)
+                best := f
+                bestTime := f.invertedTime
+    best
+
+// === Per-direction CISD + anchor + fib computation (ported from
+// chrome-anchor-debug.pine, restructured to run every bar, not just
+// barstate.islast — a strategy needs the signal on every historical bar). ===
+f_computeFib(array<float> h, array<float> l, array<float> o, array<float> c, array<int> t,
+     bool isBear, int consolLookback, float bodyMult, int gMinRun, float gDisp,
+     int searchWin, float ageMaxHours, float activeProximity) =>
+    n = array.size(h)
+    float ote705 = na
+    float zone618 = na
+    float zone79 = na
+    float topP = na
+    float botP = na
+    int topT = na
+    int botT = na
+    int cisdT = na
+    float cisdC = na
+    string path = na
+    bool expired = false
+    bool found = false
+
+    if n > consolLookback + 2
+        searchStart = math.max(consolLookback, n - searchWin)
+
+        sumBody = 0.0
+        cnt = 0
+        for i = searchStart to n - 1
+            sumBody += math.abs(array.get(c, i) - array.get(o, i))
+            cnt += 1
+        avgBody = cnt > 0 ? sumBody / cnt : 0.0
+        threshold = avgBody * bodyMult
+
+        cisdIdx = -1
+        for i = n - 1 to searchStart
+            if cisdIdx == -1
+                body = math.abs(array.get(c, i) - array.get(o, i))
+                if body >= threshold and (i - consolLookback) >= 0
+                    winHigh = array.get(h, i - 1)
+                    winLow = array.get(l, i - 1)
+                    for j = i - 2 to i - consolLookback
+                        if array.get(h, j) > winHigh
+                            winHigh := array.get(h, j)
+                        if array.get(l, j) < winLow
+                            winLow := array.get(l, j)
+                    cl = array.get(c, i)
+                    if isBear and cl < winLow
+                        cisdIdx := i
+                    if not isBear and cl > winHigh
+                        cisdIdx := i
+
+        runEnd = n - 1
+        runStart = runEnd
+        while runStart > 0 and (isBear ? array.get(c, runStart) <= array.get(o, runStart) : array.get(c, runStart) >= array.get(o, runStart))
+            runStart -= 1
+        runStart += 1
+        runLen = runEnd - runStart + 1
+        grindIdx = -1
+        if runLen >= gMinRun and runStart > 0 and runStart >= searchStart
+            pivotHigh = array.get(h, runStart - 1)
+            pivotLow = array.get(l, runStart - 1)
+            extLow = array.get(l, runStart)
+            extHigh = array.get(h, runStart)
+            for j = runStart to runEnd
+                if array.get(l, j) < extLow
+                    extLow := array.get(l, j)
+                if array.get(h, j) > extHigh
+                    extHigh := array.get(h, j)
+            disp = isBear ? pivotHigh - extLow : extHigh - pivotLow
+            if disp >= gDisp
+                grindIdx := runStart
+
+        finalIdx = -1
+        pathTag = ""
+        if cisdIdx != -1 and grindIdx != -1
+            if array.get(t, grindIdx) > array.get(t, cisdIdx)
+                finalIdx := grindIdx
+                pathTag := "grind"
+            else
+                finalIdx := cisdIdx
+                pathTag := "single-candle"
+        else if cisdIdx != -1
+            finalIdx := cisdIdx
+            pathTag := "single-candle"
+        else if grindIdx != -1
+            finalIdx := grindIdx
+            pathTag := "grind"
+
+        if finalIdx != -1 and finalIdx < n - 1
+            found := true
+            cisdT := array.get(t, finalIdx)
+            cisdC := array.get(c, finalIdx)
+            path := pathTag
+
+            if isBear
+                tp = array.get(h, finalIdx - 1)
+                ti = finalIdx - 1
+                for j = finalIdx - 2 to finalIdx - consolLookback
+                    if array.get(h, j) > tp
+                        tp := array.get(h, j)
+                        ti := j
+                topP := tp
+                topT := array.get(t, ti)
+
+                bl = array.get(l, finalIdx + 1)
+                bi = finalIdx + 1
+                for j = finalIdx + 2 to n - 1
+                    if array.get(l, j) < bl
+                        bl := array.get(l, j)
+                        bi := j
+                botP := math.min(array.get(o, bi), array.get(c, bi))
+                botT := array.get(t, bi)
+            else
+                bp = array.get(l, finalIdx - 1)
+                bi2 = finalIdx - 1
+                for j = finalIdx - 2 to finalIdx - consolLookback
+                    if array.get(l, j) < bp
+                        bp := array.get(l, j)
+                        bi2 := j
+                botP := bp
+                botT := array.get(t, bi2)
+
+                th = array.get(h, finalIdx + 1)
+                ti2 = finalIdx + 1
+                for j = finalIdx + 2 to n - 1
+                    if array.get(h, j) > th
+                        th := array.get(h, j)
+                        ti2 := j
+                topP := math.max(array.get(o, ti2), array.get(c, ti2))
+                topT := array.get(t, ti2)
+
+            rangeVal = topP - botP
+            if rangeVal > 0
+                ote705 := isBear ? botP + 0.705 * rangeVal : topP - 0.705 * rangeVal
+                zone618 := isBear ? botP + 0.618 * rangeVal : topP - 0.618 * rangeVal
+                zone79 := isBear ? botP + 0.79 * rangeVal : topP - 0.79 * rangeVal
+
+                nowTime = array.get(t, n - 1)
+                cisdDay = year(cisdT, "America/New_York") * 10000 + month(cisdT, "America/New_York") * 100 + dayofmonth(cisdT, "America/New_York")
+                nowDay = year(nowTime, "America/New_York") * 10000 + month(nowTime, "America/New_York") * 100 + dayofmonth(nowTime, "America/New_York")
+                cisdMinutes = hour(cisdT, "America/New_York") * 60 + minute(cisdT, "America/New_York")
+                nowMinutes = hour(nowTime, "America/New_York") * 60 + minute(nowTime, "America/New_York")
+                crossedOpen = cisdDay < nowDay or (cisdDay == nowDay and cisdMinutes < 570 and nowMinutes >= 570)
+                ageHours = (nowTime - cisdT) / 1000.0 / 3600.0
+                stale = crossedOpen or ageHours > ageMaxHours
+                activelyWorking = math.abs(close - ote705) <= activeProximity
+                expired := stale and not activelyWorking
+            else
+                found := false
+
+    [found, expired, ote705, zone618, zone79, topP, botP, topT, botT, cisdT, cisdC, path]
+
+// Nearest opposite-direction swing extreme in the buffered 3m window — TP1
+// proxy, same heuristic as backtest/engine.mjs's findExtreme.
+f_swingExtreme(array<float> h, array<float> l, bool isBear) =>
+    n = array.size(h)
+    float best = isBear ? array.get(l, 0) : array.get(h, 0)
+    for i = 0 to n - 1
+        if isBear and array.get(l, i) < best
+            best := array.get(l, i)
+        if not isBear and array.get(h, i) > best
+            best := array.get(h, i)
+    best
+
+// === Main per-bar evaluation, both directions ===
+inSession = not na(time(timeframe.period, sessionWindow, "America/New_York"))
+n3 = array.size(h3)
+
+if n3 > consolidationLookback + 2 and isChart3m
+    for dirIdx = 0 to 1
+        isBear = dirIdx == 0
+        wantTrade = isBear ? tradeBear : tradeBull
+        if wantTrade
+            [found, expired, ote705, zone618, zone79, topP, botP, topT, botT, cisdT, cisdC, path] =
+                 f_computeFib(h3, l3, o3, c3, t3, isBear, consolidationLookback, largeBodyMult, grindMinRun, grindDisplacement, searchBars, anchorMaxAgeHours, oteProximity)
+
+            if found and not expired
+                dist = math.abs(close - ote705)
+                if dist <= oteProximity
+                    ifvgs5 = f_findIfvgs(h5, l5, o5, c5, t5)
+                    dirStr = isBear ? "BEAR" : "BULL"
+                    matchedIfvg = f_nearestValidIfvg(ifvgs5, h5, l5, c5, dirStr, ote705, ifvgProximity)
+
+                    if not na(matchedIfvg.level)
+                        entryPrice = ote705
+                        stopPrice = isBear ? matchedIfvg.invalidation + syminfo.mintick : matchedIfvg.invalidation - syminfo.mintick
+                        riskPts = math.abs(entryPrice - stopPrice)
+
+                        if riskPts <= maxStopPoints and riskPts > 0
+                            tpExtreme = f_swingExtreme(h3, l3, not isBear)
+                            id = isBear ? "ChromeShort" : "ChromeLong"
+
+                            if inSession and strategy.position_size == 0
+                                if isBear
+                                    strategy.entry(id, strategy.short, limit = entryPrice)
+                                else
+                                    strategy.entry(id, strategy.long, limit = entryPrice)
+                                strategy.exit(id + "Exit", from_entry = id, stop = stopPrice, limit = tpExtreme)
+                            else if strategy.position_size != 0
+                                strategy.exit(id + "Exit", from_entry = id, stop = stopPrice, limit = tpExtreme)
+                        else
+                            strategy.cancel(isBear ? "ChromeShort" : "ChromeLong")
+                    else
+                        strategy.cancel(isBear ? "ChromeShort" : "ChromeLong")
+
+// Cancel stale pending orders once the session window closes for the day.
+if not inSession
+    strategy.cancel("ChromeShort")
+    strategy.cancel("ChromeLong")
+
+// === Visual confirmation (helps verify against scan-chart.mjs live reads) ===
+plotchar(strategy.position_size > 0, "Long open", "L", location.belowbar, color = color.lime, size = size.tiny)
+plotchar(strategy.position_size < 0, "Short open", "S", location.abovebar, color = color.red, size = size.tiny)
