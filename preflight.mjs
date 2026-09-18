@@ -90,8 +90,11 @@ if (failed === 0) {
   console.log(`  node topstep-live-poller.mjs "${sd} 07:00" "${sd} 10:00"`);
   console.log('  (or double-click  Tomorrow 7-10.command )\n');
   console.log('Manual checks preflight can\'t see: TopstepX logged in, Auto-OCO Brackets ON (Settings -> Risk -> Brackets).\n');
-  process.exit(0);
+  // Windows/Node 24: exiting immediately while HTTP/CDP handles are still
+  // closing trips a libuv assertion and turns exit 0 into a crash code, which
+  // "Tomorrow 7-10.bat" would read as a failed pre-flight. Let handles settle.
+  setTimeout(() => process.exit(0), 250);
 } else {
   console.log(`\x1b[31m${failed} check(s) failed\x1b[0m — fix the FAIL line(s) above before launching.\n`);
-  process.exit(1);
+  setTimeout(() => process.exit(1), 250);
 }
