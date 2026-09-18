@@ -14,6 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import { isScriptRunning } from './proc-list.mjs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -123,13 +124,7 @@ export function getSessionStatusET() {
 // sends a signal, never starts/stops anything) and cross-references the
 // most recent line of today's raw JSONL log for a genuine last-tick time.
 export function getPollerStatus() {
-  let psOut = '';
-  try {
-    psOut = execSync('ps aux', { encoding: 'utf8', timeout: 3000 });
-  } catch {
-    psOut = '';
-  }
-  const check = (needle) => psOut.split('\n').some(line => line.includes(needle) && !line.includes('grep'));
+  const check = (script) => isScriptRunning(script);
 
   const today = todayKeyET();
   function lastTickFor(logSuffix) {

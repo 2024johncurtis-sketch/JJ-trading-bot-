@@ -9,6 +9,7 @@
 // failing line says what.
 import fs from 'fs';
 import { execSync } from 'child_process';
+import { runningScriptLines } from './proc-list.mjs';
 import { getState } from './src/core/chart.js';
 import { disconnect } from './src/connection.js';
 import { searchAccounts, searchContract } from './src/topstep/client.mjs';
@@ -36,10 +37,11 @@ console.log(`\nPre-flight — ${new Date().toLocaleString('en-US', { timeZone: '
 // own invocation (e.g. `node --check topstep-live-poller.mjs && ... node
 // preflight.mjs`), producing a false-positive FAIL against itself. Now
 // matches only the actual `node topstep-live-poller.mjs` process pattern.
-try {
-  const procs = execSync("ps aux | grep 'node topstep-live-poller.mjs' | grep -v grep", { encoding: 'utf8' }).trim();
-  if (procs) bad(`a topstep-live-poller is ALREADY running — don't start a second one:\n       ${procs.split('\n').join('\n       ')}`);
-} catch { ok('no topstep-live-poller already running'); }
+{
+  const procs = runningScriptLines('topstep-live-poller.mjs');
+  if (procs.length) bad(`a topstep-live-poller is ALREADY running — don't start a second one:\n       ${procs.join('\n       ')}`);
+  else ok('no topstep-live-poller already running');
+}
 
 // 2. TradingView chart reachable over CDP + on the right instrument
 try {
