@@ -36,6 +36,16 @@ your next login, or a manual `launchctl kickstart`). Logs to
 - Turn off auto-start permanently: same `unload` command, then delete the plist file
 - Re-enable: `launchctl load -w ~/Library/LaunchAgents/com.jjcurtis.trading-dashboard.plist`
 
+**Windows auto-start (added 2026-09-18):** the shortcut `Trading Dashboard.lnk`
+in the Startup folder (`shell:startup`) runs `scripts/start-dashboard-hidden.vbs`,
+which starts the dashboard with no console window and logs to
+`sessions/dashboard.log`. Starts at login only; if port 3000 is already taken
+it exits harmlessly.
+- Start it by hand: `node dashboard-server.mjs` (or double-click the .vbs)
+- Stop it: end the `node.exe` listening on port 3000 (Task Manager), or
+  `Get-NetTCPConnection -LocalPort 3000 -State Listen` then `Stop-Process -Id <PID>`
+- Turn off auto-start: delete `Trading Dashboard.lnk` from `shell:startup`
+
 Sections: header cards (price/session/poller status/scored calls/
 cumulative R & $/win rate/streak), **⚠ Live Trading — Real Money** (this
 eval's actual trades — planned vs. real fill price, outcome, exit, points,
